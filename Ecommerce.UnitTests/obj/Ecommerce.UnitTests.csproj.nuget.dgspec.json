@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React.MySql\\ecommerce\\Ecommerce.UnitTests\\Ecommerce.UnitTests.csproj": {}
+    "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React.PostgreSql\\Ecommerce.UnitTests\\Ecommerce.UnitTests.csproj": {}
   },
   "projects": {
-    "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React.MySql\\ecommerce\\Ecommerce.UnitTests\\Ecommerce.UnitTests.csproj": {
+    "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React.PostgreSql\\Ecommerce.UnitTests\\Ecommerce.UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React.MySql\\ecommerce\\Ecommerce.UnitTests\\Ecommerce.UnitTests.csproj",
+        "projectUniqueName": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React.PostgreSql\\Ecommerce.UnitTests\\Ecommerce.UnitTests.csproj",
         "projectName": "Ecommerce.UnitTests",
-        "projectPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React.MySql\\ecommerce\\Ecommerce.UnitTests\\Ecommerce.UnitTests.csproj",
+        "projectPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React.PostgreSql\\Ecommerce.UnitTests\\Ecommerce.UnitTests.csproj",
         "packagesPath": "C:\\Users\\adeli\\.nuget\\packages\\",
-        "outputPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React.MySql\\ecommerce\\Ecommerce.UnitTests\\obj\\",
+        "outputPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React.PostgreSql\\Ecommerce.UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\adeli\\AppData\\Roaming\\NuGet\\NuGet.Config"
