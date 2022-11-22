@@ -97,3 +97,6 @@ F:\__GitProjects\__NEW__\E-commerce.Net.React.PostgreSql\Ecommerce.API\bin\Debug
 F:\__GitProjects\__NEW__\E-commerce.Net.React.PostgreSql\Ecommerce.API\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 F:\__GitProjects\__NEW__\E-commerce.Net.React.PostgreSql\Ecommerce.API\bin\Debug\net7.0\Mono.TextTemplating.dll
 F:\__GitProjects\__NEW__\E-commerce.Net.React.PostgreSql\Ecommerce.API\bin\Debug\net7.0\System.CodeDom.dll
+F:\__GitProjects\__NEW__\E-commerce.Net.React.PostgreSql\Ecommerce.API\bin\Debug\net7.0\MySqlConnector.dll
+F:\__GitProjects\__NEW__\E-commerce.Net.React.PostgreSql\Ecommerce.API\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+F:\__GitProjects\__NEW__\E-commerce.Net.React.PostgreSql\Ecommerce.API\bin\Debug\net7.0\BCrypt.Net-Next.dll
