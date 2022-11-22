@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // DB_CONTEXT
 builder.Services.AddDbContext<EcommerceContext>(
-    option => option.UseNpgsql(builder.Configuration.GetConnectionString("DB_CONNECTION"))
+    option => option.UseNpgsql(builder.Configuration.GetConnectionString("ConnectionStrings"))
 );
 
 builder.Services.AddControllers();
