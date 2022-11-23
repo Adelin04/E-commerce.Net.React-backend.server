@@ -79,4 +79,24 @@ public class UserController : ControllerBase
 
         return BadRequest(new { Success = false, Message = "No user!" });
     }
+
+    [HttpDelete("delete/userById/{id}")]
+    public async Task<ActionResult> DeleteUserById([FromHeader] long id)
+    {
+        try
+        {
+            var userById = await this._userService.GetUserById(id);
+
+            // if(userById is not null)
+            //     await  this._userService.
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine("Error -> " + exception.Message);
+            this.Logger.LogInformation("Error -> " + exception.Message);
+            return BadRequest(new { Error = exception.Message });
+        }
+
+        return BadRequest(new { Success = false, Message = "No user!" });
+    }
 }
