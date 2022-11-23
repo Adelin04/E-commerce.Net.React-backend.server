@@ -39,7 +39,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("get/userById/{id}")]
-    public async Task<ActionResult> GetUserById([FromHeader] long id)
+    public async Task<ActionResult> GetUserById([FromRoute] long id)
     {
         try
         {
@@ -58,7 +58,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("update/userById/{id}")]
-    public async Task<ActionResult> UpdateUserById([FromHeader] long id, [FromBody] UserDataUpdate userDataUpdate)
+    public async Task<ActionResult> UpdateUserById([FromRoute] long id, [FromBody] UserDataUpdate userDataUpdate)
     {
         try
         {
@@ -81,7 +81,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete("delete/userById/{id}")]
-    public async Task<ActionResult> DeleteUserById([FromHeader] long id)
+    public async Task<ActionResult> DeleteUserById([FromRoute] long id)
     {
         try
         {
