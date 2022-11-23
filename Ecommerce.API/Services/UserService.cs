@@ -27,4 +27,9 @@ public class UserService
     {
         return await this._userRepository.UpdateUserByIdAsync(id, userDataUpdate);
     }
+
+    public async Task<User> DeleteUserById(long id)
+    {
+        return await this._userRepository.DeleteUserByIdAsync(id);
+    }
 }

@@ -15,12 +15,6 @@ public class UserRepository : IUserRepository
         this._context = context;
     }
 
-    public async Task<User> DeleteUserByIdAsync(long id)
-    {
-        var findUser = await this._context.Users.FirstOrDefaultAsync(user => user.Id == id);
-        await this._context.FindAsync<User>();
-        return findUser;
-    }
 
     public async Task<List<User>> GetAllUsersAsync()
     {
@@ -52,5 +46,12 @@ public class UserRepository : IUserRepository
         await this._context.SaveChangesAsync();
 
         return foundUserById;
+    }
+
+    public async Task<User> DeleteUserByIdAsync(long id)
+    {
+        var foudUser = await this._context.Users.FirstOrDefaultAsync(user => user.Id == id);
+        this._context.Users.Remove(foudUser);
+        return foudUser;
     }
 }

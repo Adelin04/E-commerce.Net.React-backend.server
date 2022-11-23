@@ -35,7 +35,7 @@ public class UserController : ControllerBase
             return BadRequest(new { Error = exception.Message });
         }
 
-        return BadRequest(new { Success = false, Message = "No users!" });
+        return BadRequest(new { Success = false, Message = "No users found!" });
     }
 
     [HttpGet("get/userById/{id}")]
@@ -54,7 +54,7 @@ public class UserController : ControllerBase
             this.Logger.LogInformation("Error -> " + exception.Message);
         }
 
-        return BadRequest(new { Success = false, Message = "No user!" });
+        return BadRequest(new { Success = false, Message = "No user found!" });
     }
 
     [HttpGet("update/userById/{id}")]
@@ -77,7 +77,7 @@ public class UserController : ControllerBase
             return BadRequest(new { Error = exception.Message });
         }
 
-        return BadRequest(new { Success = false, Message = "No user!" });
+        return BadRequest(new { Success = false, Message = "No user found!" });
     }
 
     [HttpDelete("delete/userById/{id}")]
@@ -87,8 +87,11 @@ public class UserController : ControllerBase
         {
             var userById = await this._userService.GetUserById(id);
 
-            // if(userById is not null)
-            //     await  this._userService.
+            if (userById is not null)
+            {
+                var userRemoved = await this._userService.DeleteUserById(id);
+                return Ok(new { Success = true, UserRemoved = userRemoved });
+            }
         }
         catch (Exception exception)
         {
@@ -97,6 +100,6 @@ public class UserController : ControllerBase
             return BadRequest(new { Error = exception.Message });
         }
 
-        return BadRequest(new { Success = false, Message = "No user!" });
+        return BadRequest(new { Success = false, Message = "No user found!" });
     }
 }
