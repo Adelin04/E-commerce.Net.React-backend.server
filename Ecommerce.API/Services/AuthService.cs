@@ -43,6 +43,7 @@ public class AuthService
 
         return newUser;
     }
+    
 
     public async Task<string> Login(UserDataLogin userDataLogin)
     {
