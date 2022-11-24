@@ -11,7 +11,7 @@ public class User
     [Column("LastName")] public string LastName { get; set; } = string.Empty;
     [Column("Email")] public string Email { get; set; } = string.Empty;
 
-    [Column("RoleUser")] public List<string> rolesUser { get; set; } = new List<string> { "ROLE_USER" };
+    [Column("RoleUser")] public List<RoleUser> rolesUser { get; set; }
 
     [Column("Password")] public string Password { get; set; } = string.Empty;
     [Column("ProfileImagePath")] public string ProfileImagePath { get; set; } = string.Empty;

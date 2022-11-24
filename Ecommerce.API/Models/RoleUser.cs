@@ -7,5 +7,8 @@ public class RoleUser
 {
     [Key] public long Id { get; set; }
     public string Name { get; set; } = string.Empty;
-    // public string UserId { get; set; }
+    
+    public long UserForeignKey { get; set; }
+    [ForeignKey("UserForeignKey")]
+    public User User { get; set; }
 }

@@ -17,7 +17,6 @@ public class EcommerceContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>().HasNoKey();
         // modelBuilder.Entity<RoleUser>().HasKey(role => new { role.UserId, role.Id });
     }
 }

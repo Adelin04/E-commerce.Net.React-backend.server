@@ -25,7 +25,7 @@ public class AuthService
     public async Task<User> Register(UserDataRegister candidateUser)
     {
         User newUser = null;
-        string DEFAULT_ROLE_USER = "ROLE_USER";
+        RoleUser DEFAULT_ROLE = new RoleUser() {Name = "ROLE_USER"};
         var existingUser = await this._userRepository.GetUserByEmailAsync((candidateUser.Email));
 
         if (existingUser is null)
@@ -36,7 +36,7 @@ public class AuthService
             newUser.Email = candidateUser.Email;
             newUser.Password = BCrypt.Net.BCrypt.HashPassword(candidateUser.Password);
             newUser.ProfileImagePath = candidateUser.ProfileImagePath;
-            newUser.rolesUser = new List<string> { DEFAULT_ROLE_USER };
+            newUser.rolesUser.Add(DEFAULT_ROLE);
 
             await this._authRepository.CreateUserAsync((newUser));
         }
@@ -87,7 +87,7 @@ public class AuthService
 
         foreach (var role in user.rolesUser)
         {
-            claimsList.Add((new Claim(ClaimTypes.Role, role)));
+            claimsList.Add((new Claim(ClaimTypes.Role, role.ToString())));
         }
 
         return claimsList;
