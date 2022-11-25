@@ -9,6 +9,7 @@ public class RoleUser
     public string Name { get; set; } = string.Empty;
     
     public long UserForeignKey { get; set; }
+    
     [ForeignKey("UserForeignKey")]
     public User User { get; set; }
 }

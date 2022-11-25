@@ -25,7 +25,7 @@ public class AuthService
     public async Task<User> Register(UserDataRegister candidateUser)
     {
         User newUser = null;
-        RoleUser DEFAULT_ROLE = new RoleUser() {Name = "ROLE_USER"};
+        RoleUser DEFAULT_ROLE = new RoleUser() { Name = "ROLE_USER" };
         var existingUser = await this._userRepository.GetUserByEmailAsync((candidateUser.Email));
 
         if (existingUser is null)
@@ -43,7 +43,7 @@ public class AuthService
 
         return newUser;
     }
-    
+
 
     public async Task<string> Login(UserDataLogin userDataLogin)
     {
