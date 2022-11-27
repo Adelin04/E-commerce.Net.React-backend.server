@@ -25,34 +25,36 @@ public class UserRepository : IUserRepository
     public async Task<User> GetUserByEmailAsync(string email)
     {
         var foundUserByEmail = await this._context.Users.FirstOrDefaultAsync(user => user.Email == email);
-        Console.WriteLine("foundUserByEmail -> " + foundUserByEmail);
         return foundUserByEmail;
     }
 
     public async Task<User> GetUserByIdAsync(long id)
     {
-        var foundUserById = await this._context.Users.FirstOrDefaultAsync(user => user.Id == id);
-        return foundUserById;
+        var findUserById = await this._context.Users.FirstOrDefaultAsync(user => user.Id == id);
+        return findUserById;
     }
 
     public async Task<User> UpdateUserByIdAsync(long id, UserDataUpdate userDataUpdate)
     {
-        var foundUserById = await this._context.Users.FirstOrDefaultAsync(user => user.Id == id);
+        var findUserById = await this._context.Users.FirstOrDefaultAsync(user => user.Id == id);
 
-        foundUserById.FirstName = userDataUpdate.FirstName;
-        foundUserById.LastName = userDataUpdate.LastName;
-        foundUserById.ProfileImagePath = userDataUpdate.ProfileImagePath;
-        foundUserById.Email = userDataUpdate.Email;
+        findUserById.FirstName = userDataUpdate.FirstName;
+        findUserById.LastName = userDataUpdate.LastName;
+        findUserById.ProfileImagePath = userDataUpdate.ProfileImagePath;
+        findUserById.Email = userDataUpdate.Email;
 
         await this._context.SaveChangesAsync();
 
-        return foundUserById;
+        return findUserById;
     }
 
     public async Task<User> DeleteUserByIdAsync(long id)
     {
-        var foudUser = await this._context.Users.FirstOrDefaultAsync(user => user.Id == id);
-        this._context.Users.Remove(foudUser);
-        return foudUser;
+        var findUserById = await this._context.Users.FirstOrDefaultAsync(user => user.Id == id);
+        var removedUserById = this._context.Users.Remove(findUserById);
+
+        if (removedUserById.State == EntityState.Deleted)
+            return findUserById;
+        return null;
     }
 }

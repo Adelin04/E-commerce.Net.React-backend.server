@@ -12,12 +12,14 @@ public class AuthService
 {
     private readonly IUserRepository _userRepository;
     private readonly IAuthRepository _authRepository;
+    private readonly IRoleRepository _roleRepository;
     private readonly IConfiguration _configuration;
 
-    public AuthService(IUserRepository userRepository, IAuthRepository authRepository, IConfiguration configuration)
+    public AuthService(IUserRepository userRepository, IAuthRepository authRepository, IRoleRepository roleRepository,IConfiguration configuration)
     {
         this._userRepository = userRepository;
         this._authRepository = authRepository;
+        this._roleRepository = roleRepository;
         this._configuration = configuration;
     }
 
@@ -25,10 +27,9 @@ public class AuthService
     public async Task<User> Register(UserDataRegister candidateUser)
     {
         User newUser = null;
-        RoleUser DEFAULT_ROLE = new RoleUser() { Name = "ROLE_USER" };
+        // var DEFAULT_ROLE = await  this._roleRepository.;
         var existingUser = await this._userRepository.GetUserByEmailAsync(candidateUser.Email);
-        Console.WriteLine("existingUser -> " + existingUser);
-        Console.WriteLine("candidateUser -> " + candidateUser);
+
         if (existingUser is null)
         {
             newUser = new User();
@@ -37,9 +38,10 @@ public class AuthService
             newUser.Email = candidateUser.Email;
             newUser.Password = BCrypt.Net.BCrypt.HashPassword(candidateUser.Password);
             newUser.ProfileImagePath = candidateUser.ProfileImagePath;
-            newUser.rolesUser.Add(DEFAULT_ROLE);
-
-            await this._authRepository.CreateUserAsync((newUser));
+            // newUser.Roles.Add(DEFAULT_ROLE);
+            
+            var userCreated = await this._authRepository.CreateUserAsync(newUser);
+            Console.WriteLine("userCreated -> " + userCreated);            
         }
 
         return newUser;
@@ -86,7 +88,7 @@ public class AuthService
         claimsList.Add(new Claim(ClaimTypes.Surname, user.LastName));
         claimsList.Add(new Claim(ClaimTypes.Email, user.Email));
 
-        foreach (var role in user.rolesUser)
+        foreach (var role in user.Roles)
         {
             claimsList.Add((new Claim(ClaimTypes.Role, role.ToString())));
         }

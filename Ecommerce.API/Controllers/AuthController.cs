@@ -25,9 +25,8 @@ public class AuthController : ControllerBase
         {
             var userCreated = await this._authService.Register(userDataRegister);
 
-            if (userCreated is null)
+            if (userCreated is not null)
                 return Ok(new { Success = true, UserCreated = userCreated });
-            return BadRequest(new { Success = false, Message = "Users already exist!" });
         }
         catch (Exception exception)
         {
@@ -35,6 +34,8 @@ public class AuthController : ControllerBase
             this.Logger.LogInformation("Error -> " + exception.Message);
             return BadRequest(new { Error = exception.Message });
         }
+
+        return BadRequest(new { Success = false, Message = "Users already exist!" });
     }
 
     [HttpPost("login")]

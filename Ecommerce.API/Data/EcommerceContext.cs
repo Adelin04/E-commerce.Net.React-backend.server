@@ -5,18 +5,39 @@ namespace Ecommerce.API.Data;
 
 public class EcommerceContext : DbContext
 {
-    protected readonly IConfiguration _configuration;
+    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Product> Products { get; set; }
+    public virtual DbSet<Role> Role { get; set; }
+    public virtual DbSet<UserRole> UserRoles { get; set; }
+    public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
+
 
     public EcommerceContext(DbContextOptions options) : base(options)
     {
     }
 
-    public virtual DbSet<User> Users { get; set; }
-    public virtual DbSet<Product> Products { get; set; }
-    public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // modelBuilder.Entity<RoleUser>().HasKey(role => new { role.UserId, role.Id });
+        modelBuilder.Entity<User>().HasKey(user => user.Id);
+        modelBuilder.Entity<Product>().HasKey(product => product.Id);
+        modelBuilder.Entity<Role>().HasKey(role => role.Id);
+        modelBuilder.Entity<UserRole>().HasKey(userRole =>
+            new
+            {
+                userRole.UserId,
+                userRole.RoleId
+            });
+
+        // Relationships table User,Role,UserRole
+        modelBuilder.Entity<UserRole>()
+            .HasOne<User>(userRole => userRole.User)
+            .WithMany(user => user.Roles)
+            .HasForeignKey(userRole => userRole.UserId);
+
+        modelBuilder.Entity<UserRole>()
+            .HasOne<Role>(sc => sc.Role)
+            .WithMany(s => s.UserRoles)
+            .HasForeignKey(sc => sc.RoleId);
     }
 }

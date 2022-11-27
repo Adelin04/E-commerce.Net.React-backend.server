@@ -10,7 +10,7 @@ public class User
     [Column("FirstName")] public string FirstName { get; set; } = string.Empty;
     [Column("LastName")] public string LastName { get; set; } = string.Empty;
     [Column("Email")] public string Email { get; set; } = string.Empty;
-    [Column("RoleUser")] public List<RoleUser> rolesUser { get; set; } = new ();
+    [Column("RoleUser")] public virtual ICollection<UserRole> Roles { get; set; }
     [Column("Password")] public string Password { get; set; } = string.Empty;
     [Column("ProfileImagePath")] public string ProfileImagePath { get; set; } = string.Empty;
     [Column("CreatedAt")] public DateTime CreatedAt { get; set; } = new DateTime().Date;
