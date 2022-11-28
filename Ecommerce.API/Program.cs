@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using Ecommerce.API.Data;
 using Ecommerce.API.Interfaces;
 using Ecommerce.API.Repositories;

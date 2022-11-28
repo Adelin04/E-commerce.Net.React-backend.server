@@ -1,13 +1,14 @@
-﻿using Ecommerce.API.Models;
+﻿using Ecommerce.API.Interfaces;
+using Ecommerce.API.Models;
 using Ecommerce.API.Repositories;
 
 namespace Ecommerce.API.Services;
 
 public class UserRoleService
 {
-    private readonly UserRoleRepository _userRoleRepository;
+    private readonly IUserRoleRepository _userRoleRepository;
 
-    public UserRoleService(UserRoleRepository userRoleRepository)
+    public UserRoleService(IUserRoleRepository userRoleRepository)
     {
         this._userRoleRepository = userRoleRepository;
     }

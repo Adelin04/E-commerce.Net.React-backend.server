@@ -57,7 +57,7 @@ public class UserController : ControllerBase
         return BadRequest(new { Success = false, Message = "No user found!" });
     }
 
-    [HttpGet("update/userById/{id}")]
+    [HttpPost("update/userById/{id}")]
     public async Task<ActionResult> UpdateUserById([FromRoute] long id, [FromBody] UserDataUpdate userDataUpdate)
     {
         try

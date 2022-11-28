@@ -278,3 +278,9 @@ F:\__GitProjects\__NEW__\E-commerce.Net.React\Ecommerce.API\obj\Debug\net7.0\Eco
 F:\__GitProjects\__NEW__\E-commerce.Net.React\Ecommerce.API\obj\Debug\net7.0\ref\Ecommerce.API.dll
 F:\__GitProjects\__NEW__\E-commerce.Net.React\Ecommerce.API\bin\Debug\net7.0\AutoMapper.dll
 F:\__GitProjects\__NEW__\E-commerce.Net.React\Ecommerce.API\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Adelin\E-commerce.Net.React.MySql\Ecommerce.API\bin\Debug\net7.0\AutoMapper.dll
+D:\Adelin\E-commerce.Net.React.MySql\Ecommerce.API\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Adelin\E-commerce.Net.React.MySql\Ecommerce.API\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Adelin\E-commerce.Net.React.MySql\Ecommerce.API\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Adelin\E-commerce.Net.React.MySql\Ecommerce.API\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\Adelin\E-commerce.Net.React.MySql\Ecommerce.API\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="PostgreSQL - ecommerce_db_ame4@dpg-ce124s1a6gdsa62h38m0-a.frankfurt-postgres.render.com" uuid="af987f62-6798-4cdc-be46-0a9fdea60b49">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://dpg-ce124s1a6gdsa62h38m0-a.frankfurt-postgres.render.com:5432/ecommerce_db_ame4</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
