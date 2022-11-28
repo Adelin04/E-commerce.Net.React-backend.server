@@ -27,9 +27,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IAuthRepository, AuthRepository>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IRoleRepository, RoleRepository>();
+builder.Services.AddTransient<IUserRoleRepository,UserRoleRepository>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<RoleService>();
+builder.Services.AddScoped<UserRoleService>();
 
 var app = builder.Build();
 

@@ -13,14 +13,17 @@ public class AuthService
     private readonly IUserRepository _userRepository;
     private readonly IAuthRepository _authRepository;
     private readonly IRoleRepository _roleRepository;
+    private readonly IUserRoleRepository _userRoleRepository;
     private readonly IConfiguration _configuration;
 
     public AuthService(IUserRepository userRepository, IAuthRepository authRepository, IRoleRepository roleRepository,
+        IUserRoleRepository userRoleRepository,
         IConfiguration configuration)
     {
         this._userRepository = userRepository;
         this._authRepository = authRepository;
         this._roleRepository = roleRepository;
+        this._userRoleRepository = userRoleRepository;
         this._configuration = configuration;
     }
 
@@ -32,7 +35,7 @@ public class AuthService
 
         var defaultRole = await this._roleRepository.GetRoleByNameAsync(DEFAULT_ROLE);
         var existingUser = await this._userRepository.GetUserByEmailAsync(candidateUser.Email);
-        
+
         if (existingUser is null && defaultRole is not null)
         {
             newUser = new User();
@@ -44,6 +47,9 @@ public class AuthService
             // newUser.Roles.Add(DEFAULT_ROLE);
 
             var userCreated = await this._authRepository.CreateUserAsync(newUser);
+
+            if (userCreated.Id.ToString() is not null)
+                await this._userRoleRepository.AddNewUserRole(userCreated.Id, defaultRole.Id);
         }
 
         return newUser;
