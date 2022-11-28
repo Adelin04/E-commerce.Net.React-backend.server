@@ -15,7 +15,8 @@ public class AuthService
     private readonly IRoleRepository _roleRepository;
     private readonly IConfiguration _configuration;
 
-    public AuthService(IUserRepository userRepository, IAuthRepository authRepository, IRoleRepository roleRepository,IConfiguration configuration)
+    public AuthService(IUserRepository userRepository, IAuthRepository authRepository, IRoleRepository roleRepository,
+        IConfiguration configuration)
     {
         this._userRepository = userRepository;
         this._authRepository = authRepository;
@@ -26,11 +27,13 @@ public class AuthService
 
     public async Task<User> Register(UserDataRegister candidateUser)
     {
+        string DEFAULT_ROLE = "USER";
         User newUser = null;
-        // var DEFAULT_ROLE = await  this._roleRepository.;
-        var existingUser = await this._userRepository.GetUserByEmailAsync(candidateUser.Email);
 
-        if (existingUser is null)
+        var defaultRole = await this._roleRepository.GetRoleByNameAsync(DEFAULT_ROLE);
+        var existingUser = await this._userRepository.GetUserByEmailAsync(candidateUser.Email);
+        
+        if (existingUser is null && defaultRole is not null)
         {
             newUser = new User();
             newUser.FirstName = candidateUser.Firstname;
@@ -39,9 +42,8 @@ public class AuthService
             newUser.Password = BCrypt.Net.BCrypt.HashPassword(candidateUser.Password);
             newUser.ProfileImagePath = candidateUser.ProfileImagePath;
             // newUser.Roles.Add(DEFAULT_ROLE);
-            
+
             var userCreated = await this._authRepository.CreateUserAsync(newUser);
-            Console.WriteLine("userCreated -> " + userCreated);            
         }
 
         return newUser;
