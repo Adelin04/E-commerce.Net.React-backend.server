@@ -28,4 +28,14 @@ public class RoleService
 
         return newRole;
     }
+
+    public async Task<Role> UpdateRoleById(long id, RoleDataUpdate roleDataUpdate)
+    {
+        return await this._roleRepository.UpdateRoleByIdAsync(id, roleDataUpdate);
+    }
+
+    public async Task<Role> DeleteRoleById(long id)
+    {
+        return await this._roleRepository.DeleteRoleByIdAsync(id);
+    }
 }

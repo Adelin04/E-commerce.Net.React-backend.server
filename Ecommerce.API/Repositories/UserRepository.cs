@@ -50,11 +50,11 @@ public class UserRepository : IUserRepository
 
     public async Task<User> DeleteUserByIdAsync(long id)
     {
-        var findUserById = await this._context.Users.FirstOrDefaultAsync(user => user.Id == id);
-        var removedUserById = this._context.Users.Remove(findUserById);
+        var foundUserById = await this._context.Users.FirstOrDefaultAsync(user => user.Id == id);
+        var removedUserById = this._context.Users.Remove(foundUserById);
 
         if (removedUserById.State == EntityState.Deleted)
-            return findUserById;
+            return foundUserById;
         return null;
     }
 }

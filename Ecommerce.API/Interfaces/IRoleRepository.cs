@@ -10,4 +10,5 @@ public interface IRoleRepository
     Task<Role> GetRoleByIdAsync(long id);
     Task<Role> GetRoleByNameAsync(string name);
     Task<Role> UpdateRoleByIdAsync(long id, RoleDataUpdate roleDataUpdate);
+    Task<Role> DeleteRoleByIdAsync(long id);
 }

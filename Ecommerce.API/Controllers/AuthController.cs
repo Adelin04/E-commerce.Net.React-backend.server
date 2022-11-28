@@ -18,7 +18,7 @@ public class AuthController : ControllerBase
         this.Logger = logger;
     }
 
-    [HttpPost("create/newUser")]
+    [HttpPost("register/newUser")]
     public async Task<ActionResult> CreateNewUser([FromBody] UserDataRegister userDataRegister)
     {
         try

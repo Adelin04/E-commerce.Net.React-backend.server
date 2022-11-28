@@ -51,8 +51,29 @@ public class RoleRepository : IRoleRepository
         return foundRoleByName;
     }
 
-    public Task<Role> UpdateRoleByIdAsync(long id, RoleDataUpdate roleDataUpdate)
+    public async Task<Role> UpdateRoleByIdAsync(long id, RoleDataUpdate roleDataUpdate)
     {
-        throw new NotImplementedException();
+        Role updatedRole = null;
+        var foundRoleById = await this._Context.Role.FirstOrDefaultAsync(role => role.Id == id);
+
+        if (foundRoleById is not null)
+        {
+            updatedRole = new Role();
+            updatedRole.Name = roleDataUpdate.name;
+            
+            await this._Context.SaveChangesAsync();
+        }
+
+        return updatedRole;
+    }
+
+    public async Task<Role> DeleteRoleByIdAsync(long id)
+    {
+        var foundRoleById = await this._Context.Role.FirstOrDefaultAsync(role => role.Id == id);
+        var removedRoleById = this._Context.Role.Remove(foundRoleById);
+
+        if (removedRoleById.State == EntityState.Deleted)
+            return foundRoleById;
+        return null;
     }
 }
