@@ -13,25 +13,27 @@ Tech stack used:
 
 # Endpoints backend
 
-User endpoints:
-  - /api/User/get/userById/{id}
-  - /api/User/get/allUsers
-  - /api/User/update/userById/{id}
-  - /api/User/delete/userById/{id}
-  
 Auth endpoints:
-  - /api/Auth/login
-  - /api/Auth/register
+  - /api/Auth/v1/register/newUser
+  - /api/Auth/v1/login
+
+User endpoints:
+  - /api/User/v1/getAllUsers
+  - /api/User/v1/get/userById/{id}
+  - /api/User/v1/update/userById/{id}
+  - /api/User/v1/delete/userById/{id}  
   
 Product endpoints:
-  - /api/Product/create/newProduct
-  - /api/Product/get/productById/{id}
-  - /api/Product/get/allProducts
-  - /api/Product/update/productById/{id}
-  - /api/Product/delete/productById/{id}
+  - /api/Product/v1/create/newProduct
+  - /api/Product/v1/get/productById/{id}
+  - /api/Product/v1/get/allProducts
+  - /api/Product/v1/update/productById/{id}
+  - /api/Product/v1/delete/productById/{id}
 
-RoleUser endpoint:
-  - /api/RoleUser/add/newRoleToUserByEmail/{emailUser}/{nameRole}
+Role endpoint:
+  - /api/Role/v1/create/newRole/nameRole
+  - /api/Role/v1/get/roleById/{id}
+  - /api/Role/v1/get/allRoles
   
 CategoryProduct endpoints:
   - /api/CategoryProduct/add/newCategory/{nameCategory}
