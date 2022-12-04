@@ -74,8 +74,14 @@ public class RoleController : ControllerBase
 
             if (allRoles is not null)
             {
-                this.Logger.LogInformation($"Role list");
+                this.Logger.LogInformation($"Roles list");
                 return Ok(new { Success = true, AllRoles = allRoles, Count = allRoles.Count });
+            }
+
+            if (allRoles.Count < 1)
+            {
+                this.Logger.LogInformation($"Returned roles list");
+                return Ok(new { Message = $"Roles list is empty -> {allRoles.Count}" });
             }
         }
         catch (Exception exception)

@@ -1,6 +1,7 @@
 ﻿using Ecommerce.API.Contracts;
 using Ecommerce.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 
 namespace Ecommerce.API.Controllers;
 
@@ -17,10 +18,9 @@ public class ProductController : ControllerBase
         this.Logger = logger;
     }
 
-    [HttpPost("register/newProduct")]
+    [HttpPost("create/newProduct")]
     public async Task<ActionResult> CreateNewProduct([FromBody] ProductDataRegister productDataRegister)
     {
-        Console.WriteLine("productDataRegister -> " + productDataRegister);
         try
         {
             var newProductCreated = await this._productService.CreateNewProduct(productDataRegister);
@@ -37,12 +37,39 @@ public class ProductController : ControllerBase
         return BadRequest(new { Success = false, Message = "The product could not be created!" });
     }
 
+    [HttpGet("get/allProducts")]
+    public async Task<ActionResult> GetAllProducts()
+    {
+        try
+        {
+            var listOfProducts = await this._productService.GetAllProducts_ServiceAsync();
+            if (listOfProducts is not null)
+            {
+                this.Logger.LogInformation($"Returned products list");
+                return Ok(new { Success = true, ListOfProducts = listOfProducts, Count = listOfProducts.Count });
+            }
+
+            if (listOfProducts.Count < 1)
+            {
+                this.Logger.LogInformation($"Returned products list");
+                return Ok(new { Message = $"Products list is empty -> {listOfProducts.Count}" });
+            }
+        }
+        catch (Exception exception)
+        {
+            this.Logger.LogInformation("Error -> " + exception.Message);
+            return BadRequest(new { Error = exception.Message });
+        }
+
+        return BadRequest(new { Success = false, Message = "Products list could not be returned!" });
+    }
+
     [HttpGet("get/productById/{id}")]
     public async Task<ActionResult> GetProductById([FromRoute] long id)
     {
         try
         {
-            var productById = await this._productService.GetProductById(id);
+            var productById = await this._productService.GetProductById_ServiceAsync(id);
 
             if (productById is not null)
                 return Ok(new { Success = true, ProductById = productById });
@@ -61,7 +88,7 @@ public class ProductController : ControllerBase
     public async Task<ActionResult> UpdateProductById([FromRoute] long id,
         [FromBody] ProductDataUpdate productDataUpdate)
     {
-        var updatedProduct = await this._productService.UpdateProductById(id, productDataUpdate);
+        var updatedProduct = await this._productService.UpdateProductById_ServiceAsync(id, productDataUpdate);
         try
         {
             if (productDataUpdate is not null)
@@ -85,7 +112,7 @@ public class ProductController : ControllerBase
     [HttpDelete("delete/productById/{id}")]
     public async Task<ActionResult> DeleteProductById([FromRoute] long id)
     {
-        var removedProduct = await this._productService.DeleteProductById(id);
+        var removedProduct = await this._productService.DeleteProductById_ServiceAsync(id);
         try
         {
             if (removedProduct is not null)

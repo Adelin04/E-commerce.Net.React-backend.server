@@ -26,7 +26,16 @@ public class UserController : ControllerBase
             var listAllUsers = await this._userService.GetAllUsers();
 
             if (listAllUsers is not null)
+            {
+                this.Logger.LogInformation($"Returned users list");
                 return Ok(new { Success = true, Users = listAllUsers, CounterUser = listAllUsers.Count });
+            }
+
+            if (listAllUsers.Count < 1)
+            {
+                this.Logger.LogInformation($"Returned users list");
+                return Ok(new { Message = $"Users list is empty -> {listAllUsers.Count}" });
+            }
         }
         catch (Exception exception)
         {

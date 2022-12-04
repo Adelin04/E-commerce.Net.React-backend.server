@@ -35,7 +35,7 @@ public class ProductService
         return newProduct;
     }
 
-    public async Task<Product> GetProductById(long id)
+    public async Task<Product> GetProductById_ServiceAsync(long id)
     {
         var productById = await this._productRepository.GetProductByIdAsync(id);
 
@@ -44,7 +44,7 @@ public class ProductService
         return null;
     }
 
-    public async Task<List<Product>> GetAllProducts()
+    public async Task<List<Product>> GetAllProducts_ServiceAsync()
     {
         var listAllProducts = await this._productRepository.GetAllProductsAsync();
 
@@ -53,12 +53,12 @@ public class ProductService
         return null;
     }
 
-    public async Task<Product> UpdateProductById(long id, ProductDataUpdate productDataUpdate)
+    public async Task<Product> UpdateProductById_ServiceAsync(long id, ProductDataUpdate productDataUpdate)
     {
         return await this._productRepository.UpdateProductByIdAsync(id, productDataUpdate);
     }
 
-    public async Task<Product> DeleteProductById(long id)
+    public async Task<Product> DeleteProductById_ServiceAsync(long id)
     {
         var removedProduct = await this._productRepository.DeleteProductByIdAsync(id);
 
