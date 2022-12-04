@@ -7,20 +7,21 @@ public class EcommerceContext : DbContext
 {
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<Product> Products { get; set; }
+    public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
     public virtual DbSet<Role> Role { get; set; }
     public virtual DbSet<UserRole> UserRoles { get; set; }
-    public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
 
 
     public EcommerceContext(DbContextOptions options) : base(options)
     {
     }
-    
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>().HasKey(user => user.Id);
         modelBuilder.Entity<Product>().HasKey(product => product.Id);
+        modelBuilder.Entity<CategoryProduct>().HasKey(categoryProduct => categoryProduct.Id);
         modelBuilder.Entity<Role>().HasKey(role => role.Id);
         modelBuilder.Entity<UserRole>().HasKey(userRole =>
             new

@@ -4,7 +4,10 @@ namespace Ecommerce.API.Models;
 
 public class CategoryProduct
 {
-    [Key]
+    public CategoryProduct()
+    {
+        
+    }
     public long Id { get; set; }
     public string Name { get; set; }
 }
