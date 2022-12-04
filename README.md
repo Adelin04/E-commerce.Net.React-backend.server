@@ -34,6 +34,8 @@ Role endpoint:
   - /api/Role/v1/create/newRole/nameRole
   - /api/Role/v1/get/roleById/{id}
   - /api/Role/v1/get/allRoles
+  - /api/Role/v1/update/roleById/{id}
+  - /api/Role/v1/delete/roleById/{id}
   
 CategoryProduct endpoints:
   - /api/CategoryProduct/add/newCategory/{nameCategory}
