@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ecommerce.API.Data.Migrations
 {
     [DbContext(typeof(EcommerceContext))]
-    [Migration("20221127103311_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20221202104248_Updated_Product_field_updatedAt")]
+    partial class UpdatedProductfieldupdatedAt
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,53 +52,42 @@ namespace Ecommerce.API.Data.Migrations
 
                     b.Property<string>("Brand")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Brand");
+                        .HasColumnType("text");
 
                     b.Property<string>("Category")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Category");
+                        .HasColumnType("text");
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Color");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("CreatedAt");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("Currency")
-                        .HasColumnType("integer")
-                        .HasColumnName("Currency");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Description");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Name");
+                        .HasColumnType("text");
 
                     b.Property<string>("PicturePath")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("PicturePath");
+                        .HasColumnType("text");
 
                     b.Property<double>("Price")
-                        .HasColumnType("double precision")
-                        .HasColumnName("Price");
+                        .HasColumnType("double precision");
 
                     b.Property<long>("Stock")
-                        .HasColumnType("bigint")
-                        .HasColumnName("Stock");
+                        .HasColumnType("bigint");
 
-                    b.Property<DateTime>("updatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("UpdateAt");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -115,8 +104,7 @@ namespace Ecommerce.API.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Name");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -132,37 +120,30 @@ namespace Ecommerce.API.Data.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("CreatedAt");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Email");
+                        .HasColumnType("text");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("FirstName");
+                        .HasColumnType("text");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("LastName");
+                        .HasColumnType("text");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Password");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProfileImagePath")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("ProfileImagePath");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("UpdateAt");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 

@@ -1,8 +1,7 @@
 ﻿namespace Ecommerce.API;
 
-public enum Currency
+public class Currency
 {
-    USD = '$',
-    EURO = '€',
-    RON
+    public string USD = "$";
+    public string EURO = "€";
 }

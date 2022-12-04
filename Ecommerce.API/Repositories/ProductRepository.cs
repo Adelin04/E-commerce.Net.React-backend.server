@@ -18,9 +18,13 @@ public class ProductRepository : IProductRepository
     public async Task<Product> CreateNewProductAsync(Product newProduct)
     {
         var newProductCreated = await this._context.Products.AddAsync(newProduct);
-
+        
         if (newProductCreated.State is EntityState.Added)
+        {
+            await this._context.SaveChangesAsync(true);
             return newProduct;
+        }
+
         return null;
     }
 
@@ -48,7 +52,10 @@ public class ProductRepository : IProductRepository
         var removedProductById = this._context.Products.Remove(foundProductById);
 
         if (removedProductById.State is EntityState.Deleted)
+        {
+            await this._context.SaveChangesAsync();
             return foundProductById;
+        }
         return null;
     }
 

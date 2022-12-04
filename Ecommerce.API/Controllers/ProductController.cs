@@ -20,6 +20,7 @@ public class ProductController : ControllerBase
     [HttpPost("register/newProduct")]
     public async Task<ActionResult> CreateNewProduct([FromBody] ProductDataRegister productDataRegister)
     {
+        Console.WriteLine("productDataRegister -> " + productDataRegister);
         try
         {
             var newProductCreated = await this._productService.CreateNewProduct(productDataRegister);
@@ -29,14 +30,13 @@ public class ProductController : ControllerBase
         }
         catch (Exception exception)
         {
-            Console.WriteLine("Error -> " + exception.Message);
             this.Logger.LogInformation("Error -> " + exception.Message);
             return BadRequest(new { Error = exception.Message });
         }
 
         return BadRequest(new { Success = false, Message = "The product could not be created!" });
     }
-    
+
     [HttpGet("get/productById/{id}")]
     public async Task<ActionResult> GetProductById([FromRoute] long id)
     {
@@ -58,7 +58,8 @@ public class ProductController : ControllerBase
 
 
     [HttpPut("update/productById/{id}")]
-    public async Task<ActionResult> UpdateProductById([FromRoute] long id, [FromBody] ProductDataUpdate productDataUpdate)
+    public async Task<ActionResult> UpdateProductById([FromRoute] long id,
+        [FromBody] ProductDataUpdate productDataUpdate)
     {
         var updatedProduct = await this._productService.UpdateProductById(id, productDataUpdate);
         try

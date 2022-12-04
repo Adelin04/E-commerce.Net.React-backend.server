@@ -73,7 +73,7 @@ namespace Ecommerce.API.Data.Migrations
                     Password = table.Column<string>(type: "text", nullable: false),
                     ProfileImagePath = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdateAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -10,7 +10,7 @@ public class ProductService
 
     public ProductService(IProductRepository productRepository)
     {
-        this._productRepository = _productRepository;
+        this._productRepository = productRepository;
     }
 
     public async Task<Product> CreateNewProduct(ProductDataRegister productDataRegister)

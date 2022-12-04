@@ -30,4 +30,15 @@ public class UserRoleRepository : IUserRoleRepository
 
         return null;
     }
+
+    public async Task<List<object>> GetAllRolesByUserId(long id)
+    {
+        var listRoles = await this._context.UserRoles.ToListAsync();
+
+        foreach (var VARIABLE in listRoles)
+        {
+            Console.WriteLine("-> " + VARIABLE);
+        }
+        return new List<object>();
+    }
 }

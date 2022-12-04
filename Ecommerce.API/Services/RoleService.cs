@@ -13,7 +13,8 @@ public class RoleService
         this._roleRepository = roleRepository;
     }
 
-    public async Task<Role> CreateNewRoleAsync(RoleDataCreateNewRole dataCreateNewRole)
+
+    public async Task<Role> CreateNewRole_ServiceAsync(RoleDataCreateNewRole dataCreateNewRole)
     {
         Role newRole = null;
         var existingRole = await this._roleRepository.GetRoleByNameAsync(dataCreateNewRole.nameRole);
@@ -29,12 +30,30 @@ public class RoleService
         return newRole;
     }
 
-    public async Task<Role> UpdateRoleById(long id, RoleDataUpdate roleDataUpdate)
+    public async Task<List<Role>> GetAllRoles_ServiceAsync()
+    {
+        var allRoles = await this._roleRepository.GetAllRolesAsync();
+
+        if (allRoles is not null)
+            return allRoles;
+        return null;
+    }
+
+    public async Task<Role> GetRoleById_ServiceAsync(long id)
+    {
+        var roleById = await this._roleRepository.GetRoleByIdAsync(id);
+
+        if (roleById is not null)
+            return roleById;
+        return null;
+    }
+
+    public async Task<Role> UpdateRoleById_ServiceAsync(long id, RoleDataUpdate roleDataUpdate)
     {
         return await this._roleRepository.UpdateRoleByIdAsync(id, roleDataUpdate);
     }
 
-    public async Task<Role> DeleteRoleById(long id)
+    public async Task<Role> DeleteRoleById_ServiceAsync(long id)
     {
         return await this._roleRepository.DeleteRoleByIdAsync(id);
     }

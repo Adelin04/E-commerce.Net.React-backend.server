@@ -15,7 +15,7 @@ public class EcommerceContext : DbContext
     public EcommerceContext(DbContextOptions options) : base(options)
     {
     }
-
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -26,7 +26,7 @@ public class EcommerceContext : DbContext
             new
             {
                 userRole.UserId,
-                userRole.RoleId
+                userRole.RoleId,
             });
 
         // Relationships table User,Role,UserRole

@@ -6,13 +6,18 @@ namespace Ecommerce.API.Models;
 
 public class User
 {
-    [Key] public long Id { get; set; }
-    [Column("FirstName")] public string FirstName { get; set; } = string.Empty;
-    [Column("LastName")] public string LastName { get; set; } = string.Empty;
-    [Column("Email")] public string Email { get; set; } = string.Empty;
-    [Column("RoleUser")] public virtual ICollection<UserRole> Roles { get; set; }
-    [Column("Password")] public string Password { get; set; } = string.Empty;
-    [Column("ProfileImagePath")] public string ProfileImagePath { get; set; } = string.Empty;
-    [Column("CreatedAt")] public DateTime CreatedAt { get; set; } = new DateTime().Date;
-    [Column("UpdateAt")] public DateTime UpdatedAt { get; set; } = new DateTime().Date;
+    public User()
+    {
+        Roles = new HashSet<UserRole>();
+    }
+
+    public long Id { get; set; }
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public virtual ICollection<UserRole> Roles { get; set; }
+    public string Password { get; set; } = string.Empty;
+    public string ProfileImagePath { get; set; } = string.Empty;
+    public DateTime CreatedAt { get; set; } = new DateTime().Date;
+    public DateTime UpdatedAt { get; set; } = new DateTime().Date;
 }

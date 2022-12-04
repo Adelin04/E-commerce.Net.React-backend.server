@@ -1,4 +1,5 @@
 ﻿using Ecommerce.API.Contracts;
+using Ecommerce.API.Models;
 using Ecommerce.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,12 +23,12 @@ public class RoleController : ControllerBase
     {
         try
         {
-            var newRoleCreated = await this._roleService.CreateNewRoleAsync(dataCreateNewRole);
+            var newRoleCreated = await this._roleService.CreateNewRole_ServiceAsync(dataCreateNewRole);
 
             if (newRoleCreated is not null)
             {
-                this.Logger.LogInformation($"New role was created -> {dataCreateNewRole}");
-                return Ok(new { Success = true, RoleCreated = dataCreateNewRole });
+                this.Logger.LogInformation($"New role was created -> {dataCreateNewRole.nameRole}");
+                return Ok(new { Success = true, RoleCreated = dataCreateNewRole.nameRole });
             }
         }
         catch (Exception exception)
@@ -37,16 +38,64 @@ public class RoleController : ControllerBase
         }
 
 
-        this.Logger.LogInformation($"The role {dataCreateNewRole} could not be created!");
-        return BadRequest(new { Success = false, Message = $"The role {dataCreateNewRole} could not be created!" });
+        this.Logger.LogInformation($"The role {dataCreateNewRole.nameRole} could not be created!");
+        return BadRequest(new
+            { Success = false, Message = $"The role {dataCreateNewRole.nameRole} could not be created!" });
     }
+
+    [HttpGet("get/roleById/{id}")]
+    public async Task<ActionResult> GetRoleById(long id)
+    {
+        try
+        {
+            var roleById = await this._roleService.GetRoleById_ServiceAsync(id);
+            
+            if (roleById is not null)
+            {
+                this.Logger.LogInformation($"Role by id -> {roleById.Id}");
+                return Ok(new { Success = true, RoleById = roleById });
+            }
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine("Error -> " + exception.Message);
+            this.Logger.LogInformation($"Error -> {exception.Message.ToString()} ");
+        }
+
+        return BadRequest(new { Success = false, Message = $"Role by id not found!" });
+    }
+
+    [HttpGet("get/allRoles")]
+    public async Task<ActionResult> GetAllRoles()
+    {
+        try
+        {
+            var allRoles = await this._roleService.GetAllRoles_ServiceAsync();
+
+            if (allRoles is not null)
+            {
+                this.Logger.LogInformation($"Role list");
+                return Ok(new { Success = true, AllRoles = allRoles, Count = allRoles.Count });
+            }
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine("Error -> " + exception.Message);
+            this.Logger.LogInformation(exception.Message.ToString());
+        }
+
+        this.Logger.LogInformation($"Role list could not be found!");
+        return BadRequest(new
+            { Success = false, Message = $"Role list  could not be created!" });
+    }
+
 
     [HttpPut("update/roleById/{id}")]
     public async Task<ActionResult> UpdateRoleById([FromRoute] long id, [FromBody] RoleDataUpdate roleDataUpdate)
     {
         try
         {
-            var updatedRole = await this._roleService.UpdateRoleById(id, roleDataUpdate);
+            var updatedRole = await this._roleService.UpdateRoleById_ServiceAsync(id, roleDataUpdate);
 
             if (updatedRole is not null)
             {
@@ -61,20 +110,20 @@ public class RoleController : ControllerBase
         }
 
 
-        this.Logger.LogInformation($"The role {roleDataUpdate.name} could not be updated!");
+        this.Logger.LogInformation($"The role {roleDataUpdate.name.ToString()} could not be updated!");
         return BadRequest(new { Success = false, Message = $"The role {roleDataUpdate.name} could not be updated!" });
     }
 
     [HttpDelete("delete/roleById/{id}")]
     public async Task<ActionResult> DeleteRoleById([FromRoute] long id)
     {
-        var deletedRole = await this._roleService.DeleteRoleById(id);
+        var deletedRole = await this._roleService.DeleteRoleById_ServiceAsync(id);
         try
         {
             if (deletedRole is not null)
             {
                 this.Logger.LogInformation($"Role {deletedRole.Name} was removed from DB");
-                return Ok(new { Success = true, RoleUpdated = deletedRole.Name });
+                return Ok(new { Success = true, RoleRemoved = deletedRole.Name });
             }
         }
         catch (Exception exception)

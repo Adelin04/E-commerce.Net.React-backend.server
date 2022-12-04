@@ -44,7 +44,6 @@ public class AuthService
             newUser.Email = candidateUser.Email;
             newUser.Password = BCrypt.Net.BCrypt.HashPassword(candidateUser.Password);
             newUser.ProfileImagePath = candidateUser.ProfileImagePath;
-            // newUser.Roles.Add(DEFAULT_ROLE);
 
             var userCreated = await this._authRepository.CreateUserAsync(newUser);
 
@@ -59,7 +58,7 @@ public class AuthService
     public async Task<string> Login(UserDataLogin userDataLogin)
     {
         string token = null;
-        var existingUser = await this._userRepository.GetUserByEmailAsync((userDataLogin.Email));
+        var existingUser = await this._userRepository.GetUserByEmailAsync(userDataLogin.Email);
 
         if (existingUser is not null)
         {
@@ -85,6 +84,7 @@ public class AuthService
             signingCredentials: credentials
         );
 
+
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
@@ -92,13 +92,15 @@ public class AuthService
     {
         List<Claim> claimsList = new List<Claim>();
 
+
         claimsList.Add((new Claim(ClaimTypes.GivenName, user.FirstName)));
         claimsList.Add(new Claim(ClaimTypes.Surname, user.LastName));
         claimsList.Add(new Claim(ClaimTypes.Email, user.Email));
 
+
         foreach (var role in user.Roles)
         {
-            claimsList.Add((new Claim(ClaimTypes.Role, role.ToString())));
+            claimsList.Add((new Claim(ClaimTypes.Role, role.Role.Name.ToString())));
         }
 
         return claimsList;

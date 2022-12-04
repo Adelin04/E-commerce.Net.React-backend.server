@@ -41,12 +41,13 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<ActionResult> Login(UserDataLogin userDataLogin)
     {
+
         try
         {
-            var userLogged = this._authService.Login(userDataLogin);
+            var token = await this._authService.Login(userDataLogin);
 
-            if (userLogged is not null)
-                return Ok(new { Success = true, UserLogged = userLogged });
+            if (token is not null)
+                return Ok(new { Success = true, Token = token });
             return BadRequest(new { Success = false, Message = "There is no account with this email address yet !" });
         }
         catch (Exception exception)

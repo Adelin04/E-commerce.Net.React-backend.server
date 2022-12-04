@@ -26,7 +26,7 @@ public class UserController : ControllerBase
             var listAllUsers = await this._userService.GetAllUsers();
 
             if (listAllUsers is not null)
-                return Ok(new { Success = true, CounterUser = listAllUsers.Count });
+                return Ok(new { Success = true, Users = listAllUsers, CounterUser = listAllUsers.Count });
         }
         catch (Exception exception)
         {

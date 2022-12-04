@@ -53,18 +53,15 @@ public class RoleRepository : IRoleRepository
 
     public async Task<Role> UpdateRoleByIdAsync(long id, RoleDataUpdate roleDataUpdate)
     {
-        Role updatedRole = null;
         var foundRoleById = await this._Context.Role.FirstOrDefaultAsync(role => role.Id == id);
 
         if (foundRoleById is not null)
         {
-            updatedRole = new Role();
-            updatedRole.Name = roleDataUpdate.name;
-            
+            foundRoleById.Name = roleDataUpdate.name;
             await this._Context.SaveChangesAsync();
         }
 
-        return updatedRole;
+        return foundRoleById;
     }
 
     public async Task<Role> DeleteRoleByIdAsync(long id)
@@ -73,7 +70,11 @@ public class RoleRepository : IRoleRepository
         var removedRoleById = this._Context.Role.Remove(foundRoleById);
 
         if (removedRoleById.State == EntityState.Deleted)
+        {
+            await this._Context.SaveChangesAsync();
             return foundRoleById;
+        }
+
         return null;
     }
 }
