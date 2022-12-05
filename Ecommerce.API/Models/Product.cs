@@ -20,8 +20,11 @@ public class Product
     public double Price { get; set; }
     public string PicturePath { get; set; }
     public long Stock { get; set; }
-    public string Category { get; set; }
     public string Currency { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
+
+    // public string Category { get; set; }
+    public long CategoryProductId { get; set; }
+    public virtual CategoryProduct CategoryProduct { get; set; }
 }

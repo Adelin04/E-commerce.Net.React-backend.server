@@ -1,4 +1,6 @@
-﻿namespace Ecommerce.API.Contracts;
+﻿using Ecommerce.API.Models;
+
+namespace Ecommerce.API.Contracts;
 
 public record ProductDataUpdate(
     string Name,
@@ -8,5 +10,5 @@ public record ProductDataUpdate(
     double Price,
     string PicturePath,
     long Stock,
-    string Category
+    CategoryProduct CategoryProduct
 );

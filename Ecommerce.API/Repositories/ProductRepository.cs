@@ -18,7 +18,7 @@ public class ProductRepository : IProductRepository
     public async Task<Product> CreateNewProductAsync(Product newProduct)
     {
         var newProductCreated = await this._context.Products.AddAsync(newProduct);
-        
+
         if (newProductCreated.State is EntityState.Added)
         {
             await this._context.SaveChangesAsync(true);
@@ -56,6 +56,7 @@ public class ProductRepository : IProductRepository
             await this._context.SaveChangesAsync();
             return foundProductById;
         }
+
         return null;
     }
 
@@ -67,15 +68,15 @@ public class ProductRepository : IProductRepository
         {
             foundProductById.Name = productDataUpdate.Name;
             foundProductById.Brand = productDataUpdate.Brand;
-            foundProductById.Category = productDataUpdate.Category;
+            // foundProductById.CategoryProduct = productDataUpdate.CategoryProduct;
             foundProductById.Color = productDataUpdate.Color;
             foundProductById.Description = productDataUpdate.Description;
             foundProductById.Price = productDataUpdate.Price;
             foundProductById.Stock = productDataUpdate.Stock;
             foundProductById.PicturePath = productDataUpdate.PicturePath;
-
-            this._context.SaveChangesAsync();
         }
+
+        await this._context.SaveChangesAsync();
 
         return foundProductById;
     }

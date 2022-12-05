@@ -40,5 +40,13 @@ public class EcommerceContext : DbContext
             .HasOne<Role>(sc => sc.Role)
             .WithMany(s => s.UserRoles)
             .HasForeignKey(sc => sc.RoleId);
+
+
+        //Relationships table Product,CategoryProduct
+        modelBuilder.Entity<Product>()
+            .HasOne<CategoryProduct>(product => product.CategoryProduct)
+            .WithMany(categoryProduct => categoryProduct.Products)
+            .HasForeignKey(product => product.CategoryProductId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

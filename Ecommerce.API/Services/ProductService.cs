@@ -22,7 +22,7 @@ public class ProductService
             newProduct = new Product();
             newProduct.Name = productDataRegister.Name;
             newProduct.Brand = productDataRegister.Brand;
-            newProduct.Category = productDataRegister.Category;
+            // newProduct.CategoryProduct = productDataRegister.CategoryProduct;
             newProduct.Color = productDataRegister.Color;
             newProduct.Description = productDataRegister.Description;
             newProduct.Price = productDataRegister.Price;
