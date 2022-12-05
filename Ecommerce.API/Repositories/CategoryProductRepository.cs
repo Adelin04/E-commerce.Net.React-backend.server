@@ -15,8 +15,6 @@ public class CategoryProductRepository : ICategoryProduct
         this._context = context;
     }
     
-
-
     public async Task<CategoryProduct> AddNewCategoryProductAsync(CategoryProduct newCategoryProduct)
     {
 

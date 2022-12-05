@@ -34,7 +34,7 @@ public class ProductController : ControllerBase
             return BadRequest(new { Error = exception.Message });
         }
 
-        return BadRequest(new { Success = false, Message = "The product could not be created!" });
+        return BadRequest(new { Success = false, Message = $"The product {productDataRegister.Name} could not be created!" });
     }
 
     [HttpGet("get/allProducts")]
