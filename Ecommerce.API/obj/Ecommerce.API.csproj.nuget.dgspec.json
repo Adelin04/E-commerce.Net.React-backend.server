@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React\\Ecommerce.API\\Ecommerce.API.csproj": {}
+    "D:\\Adelin\\E-commerce.Net.React\\Ecommerce.API\\Ecommerce.API.csproj": {}
   },
   "projects": {
-    "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React\\Ecommerce.API\\Ecommerce.API.csproj": {
+    "D:\\Adelin\\E-commerce.Net.React\\Ecommerce.API\\Ecommerce.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React\\Ecommerce.API\\Ecommerce.API.csproj",
+        "projectUniqueName": "D:\\Adelin\\E-commerce.Net.React\\Ecommerce.API\\Ecommerce.API.csproj",
         "projectName": "Ecommerce.API",
-        "projectPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React\\Ecommerce.API\\Ecommerce.API.csproj",
-        "packagesPath": "C:\\Users\\adeli\\.nuget\\packages\\",
-        "outputPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React\\Ecommerce.API\\obj\\",
+        "projectPath": "D:\\Adelin\\E-commerce.Net.React\\Ecommerce.API\\Ecommerce.API.csproj",
+        "packagesPath": "C:\\Users\\Teilor\\.nuget\\packages\\",
+        "outputPath": "D:\\Adelin\\E-commerce.Net.React\\Ecommerce.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\adeli\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Teilor\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
