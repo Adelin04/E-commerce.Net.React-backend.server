@@ -6,10 +6,11 @@ public class CategoryProduct
 {
     public CategoryProduct()
     {
-        this.Products = new List<Product>();
+        // this.Products = new List<Product>();
     }
 
     public long Id { get; set; }
     public string Name { get; set; }
-    public virtual ICollection<Product> Products { get; set; }
+
+    // public virtual ICollection<Product> Products { get; set; }
 }

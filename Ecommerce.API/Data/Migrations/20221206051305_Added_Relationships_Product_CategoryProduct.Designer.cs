@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ecommerce.API.Data.Migrations
 {
     [DbContext(typeof(EcommerceContext))]
-    [Migration("20221205044406_Added_FK_CategoryId")]
-    partial class AddedFKCategoryId
+    [Migration("20221206051305_Added_Relationships_Product_CategoryProduct")]
+    partial class AddedRelationshipsProductCategoryProduct
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,6 @@ namespace Ecommerce.API.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long>("CategoryProductId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasColumnType("text");
@@ -75,6 +68,9 @@ namespace Ecommerce.API.Data.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<long>("FK_CategoryProductId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -94,6 +90,8 @@ namespace Ecommerce.API.Data.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FK_CategoryProductId");
 
                     b.ToTable("Products");
                 });
@@ -172,6 +170,17 @@ namespace Ecommerce.API.Data.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("Ecommerce.API.Models.Product", b =>
+                {
+                    b.HasOne("Ecommerce.API.Models.CategoryProduct", "CategoryProduct")
+                        .WithMany("Products")
+                        .HasForeignKey("FK_CategoryProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CategoryProduct");
+                });
+
             modelBuilder.Entity("Ecommerce.API.Models.UserRole", b =>
                 {
                     b.HasOne("Ecommerce.API.Models.Role", "Role")
@@ -189,6 +198,11 @@ namespace Ecommerce.API.Data.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Ecommerce.API.Models.CategoryProduct", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Ecommerce.API.Models.Role", b =>

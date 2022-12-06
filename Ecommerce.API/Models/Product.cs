@@ -24,7 +24,7 @@ public class Product
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
-    // public string Category { get; set; }
-    public long CategoryProductId { get; set; }
+
     public virtual CategoryProduct CategoryProduct { get; set; }
+    public long FK_CategoryProductId { get; set; }
 }
