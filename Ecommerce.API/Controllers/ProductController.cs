@@ -21,6 +21,7 @@ public class ProductController : ControllerBase
     [HttpPost("create/newProduct")]
     public async Task<ActionResult> CreateNewProduct([FromBody] ProductDataRegister productDataRegister)
     {
+        Console.WriteLine("controller -> " + productDataRegister);
         try
         {
             var newProductCreated = await this._productService.CreateNewProduct(productDataRegister);

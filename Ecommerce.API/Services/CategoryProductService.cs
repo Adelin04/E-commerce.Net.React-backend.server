@@ -7,9 +7,9 @@ namespace Ecommerce.API.Services;
 
 public class CategoryProductService
 {
-    private readonly ICategoryProduct _categoryProductRepository;
+    private readonly ICategoryProductRepository _categoryProductRepository;
     
-    public CategoryProductService(ICategoryProduct categoryProductRepository)
+    public CategoryProductService(ICategoryProductRepository categoryProductRepository)
     {
         this._categoryProductRepository = categoryProductRepository;
     }
@@ -21,7 +21,8 @@ public class CategoryProductService
 
         if (categoryProductDataRegister is null)
             return null;
-        
+
+        newCategoryProduct = new CategoryProduct();
         newCategoryProduct.Name = categoryProductDataRegister.Name;
         var newCategoryProductCreated = 
             this._categoryProductRepository.AddNewCategoryProductAsync(newCategoryProduct);

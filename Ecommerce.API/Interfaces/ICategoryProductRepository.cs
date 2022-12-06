@@ -2,10 +2,10 @@
 
 namespace Ecommerce.API.Interfaces;
 
-public interface ICategoryProduct
+public interface ICategoryProductRepository
 {
     Task<CategoryProduct> AddNewCategoryProductAsync(CategoryProduct newCategoryProduct);
     Task<List<CategoryProduct>> GetAllCategoriesProductAsync();
-    Task<CategoryProduct> GetCategoryProductByIdAsync();
-    Task<CategoryProduct> GetCategoryProductByNameAsync();
+    Task<CategoryProduct> GetCategoryProductByIdAsync(long id);
+    Task<CategoryProduct> GetCategoryProductByNameAsync(string nameCategory);
 }

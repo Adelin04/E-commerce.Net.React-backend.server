@@ -43,10 +43,8 @@ public class EcommerceContext : DbContext
 
 
         //Relationships table Product,CategoryProduct
-        /*modelBuilder.Entity<Product>()
-            .HasOne<CategoryProduct>(product => product.CategoryProduct)
-            .WithMany(categoryProduct => categoryProduct.Products)
-            .HasForeignKey(product => product.FK_CategoryProductId)
-            .OnDelete(DeleteBehavior.Restrict);*/
+        modelBuilder.Entity<Product>()
+            .HasOne<CategoryProduct>(product => product.CategoryProduct);
+
     }
 }

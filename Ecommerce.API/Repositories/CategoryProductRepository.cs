@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.API.Repositories;
 
-public class CategoryProductRepository : ICategoryProduct
+public class CategoryProductRepository : ICategoryProductRepository
 {
     private readonly EcommerceContext _context;
     
@@ -22,7 +22,7 @@ public class CategoryProductRepository : ICategoryProduct
         
             if(newCategoryProductCreated.State == EntityState.Added)
             {
-                await this._context.SaveChangesAsync();
+                await this._context.SaveChangesAsync(true);
                 return newCategoryProduct;
             }    
         return null;
@@ -33,13 +33,18 @@ public class CategoryProductRepository : ICategoryProduct
         throw new NotImplementedException();
     }
 
-    public Task<CategoryProduct> GetCategoryProductByIdAsync()
+    public Task<CategoryProduct> GetCategoryProductByIdAsync(long id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<CategoryProduct> GetCategoryProductByNameAsync()
+    public async Task<CategoryProduct> GetCategoryProductByNameAsync(string nameCategory)
     {
-        throw new NotImplementedException();
-    }
+        var findCategoryProductByName =
+           await this._context.CategoryProducts.FirstOrDefaultAsync(name => name.Name == nameCategory);
+
+        if (findCategoryProductByName is not null)
+            return findCategoryProductByName;
+            return null;
+        }
 }

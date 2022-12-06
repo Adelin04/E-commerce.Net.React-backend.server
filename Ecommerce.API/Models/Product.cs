@@ -26,5 +26,4 @@ public class Product
 
 
     public virtual CategoryProduct CategoryProduct { get; set; }
-    public long FK_CategoryProductId { get; set; }
 }

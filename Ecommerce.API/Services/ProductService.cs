@@ -7,30 +7,34 @@ namespace Ecommerce.API.Services;
 public class ProductService
 {
     private readonly IProductRepository _productRepository;
+    private readonly ICategoryProductRepository _categoryProductRepository;
 
-    public ProductService(IProductRepository productRepository)
+    public ProductService(IProductRepository productRepository,ICategoryProductRepository categoryProductRepository)
     {
         this._productRepository = productRepository;
+        this._categoryProductRepository = categoryProductRepository;
     }
 
     public async Task<Product> CreateNewProduct(ProductDataRegister productDataRegister)
     {
         Product newProduct = null;
-
-        if (productDataRegister is not null)
-        {
-            newProduct = new Product();
-            newProduct.Name = productDataRegister.Name;
-            newProduct.Brand = productDataRegister.Brand;
-            // newProduct.CategoryProduct = productDataRegister.CategoryProduct;
-            newProduct.Color = productDataRegister.Color;
-            newProduct.Description = productDataRegister.Description;
-            newProduct.Price = productDataRegister.Price;
-            newProduct.Stock = productDataRegister.Stock;
-            newProduct.PicturePath = productDataRegister.PicturePath;
-        }
-
-        var newProductCreated = await this._productRepository.CreateNewProductAsync(newProduct);
+        var findCategoryProduct = await 
+            this._categoryProductRepository.GetCategoryProductByNameAsync(productDataRegister.CategoryProduct);
+        Console.WriteLine("findCategoryProduct -> ",findCategoryProduct);
+        // if (productDataRegister is not null)
+        // {
+        //     newProduct = new Product();
+        //     newProduct.Name = productDataRegister.Name;
+        //     newProduct.Brand = productDataRegister.Brand;
+        //     // newProduct.CategoryProduct = productDataRegister.CategoryProduct;
+        //     newProduct.Color = productDataRegister.Color;
+        //     newProduct.Description = productDataRegister.Description;
+        //     newProduct.Price = productDataRegister.Price;
+        //     newProduct.Stock = productDataRegister.Stock;
+        //     newProduct.PicturePath = productDataRegister.PicturePath;
+        // }
+        //
+        // var newProductCreated = await this._productRepository.CreateNewProductAsync(newProduct);
 
         return newProduct;
     }
