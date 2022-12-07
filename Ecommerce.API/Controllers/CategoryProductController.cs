@@ -39,4 +39,30 @@ public class CategoryProductController : ControllerBase
         return BadRequest($"The product {categoryProductDataRegister.Name} could not be created!");
     }
     
+    [HttpGet("get/allCategoriesProduct")]
+    public async Task<ActionResult> GetAllProducts()
+    {
+        try
+        {
+            var listOfCategories = await this._categoryProductService.GetAllCategoriesProduct_ServiceAsync();
+            if (listOfCategories is not null)
+            {
+                this.Logger.LogInformation($"Returned product category list");
+                return Ok(new { Success = true, ListOfCategories = listOfCategories, Count = listOfCategories.Count });
+            }
+
+            if (listOfCategories.Count < 1)
+            {
+                this.Logger.LogInformation($"Returned product category list");
+                return Ok(new { Message = $"Products list is empty -> {listOfCategories.Count}" });
+            }
+        }
+        catch (Exception exception)
+        {
+            this.Logger.LogInformation("Error -> " + exception.Message);
+            return BadRequest(new { Error = exception.Message });
+        }
+
+        return BadRequest(new { Success = false, Message = "Product category list could not be returned!" });
+    }
 }

@@ -18,9 +18,8 @@ public class ProductService
     public async Task<Product> CreateNewProduct(ProductDataRegister productDataRegister)
     {
         Product newProduct = null;
-        var findCategoryProduct = await 
-            this._categoryProductRepository.GetCategoryProductByNameAsync(productDataRegister.CategoryProduct);
-        Console.WriteLine("findCategoryProduct -> ",findCategoryProduct);
+        var findCategoryProduct = await this._categoryProductRepository.GetCategoryProductByNameAsync(productDataRegister.Category);
+        Console.WriteLine("productDataRegister -> ",productDataRegister);
         // if (productDataRegister is not null)
         // {
         //     newProduct = new Product();
