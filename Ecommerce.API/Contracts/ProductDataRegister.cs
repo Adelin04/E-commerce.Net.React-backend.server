@@ -11,5 +11,5 @@ public record ProductDataRegister
     double Price,
     string PicturePath,
     long Stock,
-    string Category
+    string CategoryName
 );

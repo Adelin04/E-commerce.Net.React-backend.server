@@ -44,10 +44,10 @@ public class CategoryProductRepository : ICategoryProductRepository
 
     public async Task<CategoryProduct> GetCategoryProductByNameAsync(string nameCategory)
     {
-        var findCategoryProductByName =
-            await this._context.CategoryProducts.FirstOrDefaultAsync(categoryProduct =>
-                categoryProduct.Name == nameCategory);
+        var findCategoryProductByName = await this._context.CategoryProducts.FirstOrDefaultAsync(categoryProduct => categoryProduct.Name == nameCategory);
+        
         Console.WriteLine("findCategoryProductByName -> ", findCategoryProductByName);
+        
         if (findCategoryProductByName is not null)
             return findCategoryProductByName;
         return null;

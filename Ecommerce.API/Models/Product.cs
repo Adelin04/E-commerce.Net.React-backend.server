@@ -25,5 +25,6 @@ public class Product
     public DateTime UpdatedAt { get; set; }
 
 
+    public virtual long CategoryProductId { get; set; }
     public virtual CategoryProduct CategoryProduct { get; set; }
 }

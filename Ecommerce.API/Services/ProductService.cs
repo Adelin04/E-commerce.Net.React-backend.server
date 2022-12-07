@@ -9,32 +9,39 @@ public class ProductService
     private readonly IProductRepository _productRepository;
     private readonly ICategoryProductRepository _categoryProductRepository;
 
-    public ProductService(IProductRepository productRepository,ICategoryProductRepository categoryProductRepository)
+    public ProductService(IProductRepository productRepository, ICategoryProductRepository categoryProductRepository)
     {
         this._productRepository = productRepository;
         this._categoryProductRepository = categoryProductRepository;
     }
 
-    public async Task<Product> CreateNewProduct(ProductDataRegister productDataRegister)
+    public async Task<Product> CreateNewProduct_ServiceAsync(ProductDataRegister productDataRegister)
     {
         Product newProduct = null;
-        var findCategoryProduct = await this._categoryProductRepository.GetCategoryProductByNameAsync(productDataRegister.Category);
-        Console.WriteLine("productDataRegister -> ",productDataRegister);
-        // if (productDataRegister is not null)
-        // {
-        //     newProduct = new Product();
-        //     newProduct.Name = productDataRegister.Name;
-        //     newProduct.Brand = productDataRegister.Brand;
-        //     // newProduct.CategoryProduct = productDataRegister.CategoryProduct;
-        //     newProduct.Color = productDataRegister.Color;
-        //     newProduct.Description = productDataRegister.Description;
-        //     newProduct.Price = productDataRegister.Price;
-        //     newProduct.Stock = productDataRegister.Stock;
-        //     newProduct.PicturePath = productDataRegister.PicturePath;
-        // }
-        //
-        // var newProductCreated = await this._productRepository.CreateNewProductAsync(newProduct);
 
+        var findCategoryProduct =
+            await this._categoryProductRepository.GetCategoryProductByNameAsync(productDataRegister.CategoryName);
+
+        if (findCategoryProduct is null)
+            return null;
+
+        if (productDataRegister is not null)
+        {
+            newProduct = new Product();
+            newProduct.Name = productDataRegister.Name;
+            newProduct.Brand = productDataRegister.Brand;
+            newProduct.Color = productDataRegister.Color;
+            newProduct.Description = productDataRegister.Description;
+            newProduct.Price = productDataRegister.Price;
+            newProduct.Stock = productDataRegister.Stock;
+            newProduct.PicturePath = productDataRegister.PicturePath;
+
+            //FOREIGNKEY
+            newProduct.CategoryProductId = findCategoryProduct.Id;
+        }
+
+        var newProductCreated = await this._productRepository.CreateNewProductAsync(newProduct);
+        
         return newProduct;
     }
 
