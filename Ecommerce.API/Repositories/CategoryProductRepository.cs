@@ -37,17 +37,23 @@ public class CategoryProductRepository : ICategoryProductRepository
         return null;
     }
 
-    public Task<CategoryProduct> GetCategoryProductByIdAsync(long id)
+    public async Task<CategoryProduct> GetCategoryProductByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        var findCategoryProductById =
+            await this._context.CategoryProducts.FirstOrDefaultAsync(categoryProduct => categoryProduct.Id == id);
+
+        if (findCategoryProductById is not null)
+            return findCategoryProductById;
+        return null;
     }
 
     public async Task<CategoryProduct> GetCategoryProductByNameAsync(string nameCategory)
     {
-        var findCategoryProductByName = await this._context.CategoryProducts.FirstOrDefaultAsync(categoryProduct => categoryProduct.Name == nameCategory);
-        
-        Console.WriteLine("findCategoryProductByName -> ", findCategoryProductByName);
-        
+        var findCategoryProductByName =
+            await this._context.CategoryProducts.FirstOrDefaultAsync(categoryProduct =>
+                categoryProduct.Name == nameCategory);
+
+
         if (findCategoryProductByName is not null)
             return findCategoryProductByName;
         return null;
