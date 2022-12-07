@@ -25,8 +25,8 @@ User endpoints:
   
 Product endpoints:
   - /api/Product/v1/create/newProduct
-  - /api/Product/v1/get/productById/{id}
   - /api/Product/v1/get/allProducts
+  - /api/Product/v1/get/productById/{id}
   - /api/Product/v1/update/productById/{id}
   - /api/Product/v1/delete/productById/{id}
 
@@ -38,8 +38,8 @@ Role endpoint:
   - /api/Role/v1/delete/roleById/{id}
   
 CategoryProduct endpoints:
-  - /api/CategoryProduct/add/newCategory/{nameCategory}
-  - /api/CategoryProduct/get/allCategory
+  - /api/CategoryProduct/v1/add/newCategoryProduct
+  - /api/CategoryProduct/v1/get/allCategory
 
 ![Swagger](https://user-images.githubusercontent.com/63923347/200933534-5d407d1f-4c64-4a71-93f2-da197130d695.png)
 ![login](https://user-images.githubusercontent.com/63923347/191663942-1e342d69-79a6-482e-83ed-d274a129c589.png)
