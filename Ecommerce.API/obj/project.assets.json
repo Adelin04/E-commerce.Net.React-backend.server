@@ -11092,11 +11092,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React\\Ecommerce.API\\Ecommerce.API.csproj",
+      "projectUniqueName": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React-backend.server\\Ecommerce.API\\Ecommerce.API.csproj",
       "projectName": "Ecommerce.API",
-      "projectPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React\\Ecommerce.API\\Ecommerce.API.csproj",
+      "projectPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React-backend.server\\Ecommerce.API\\Ecommerce.API.csproj",
       "packagesPath": "C:\\Users\\adeli\\.nuget\\packages\\",
-      "outputPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React\\Ecommerce.API\\obj\\",
+      "outputPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React-backend.server\\Ecommerce.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\adeli\\AppData\\Roaming\\NuGet\\NuGet.Config"
