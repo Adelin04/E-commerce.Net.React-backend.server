@@ -26,7 +26,7 @@ public class ProductController : ControllerBase
             var newProductCreated = await this._productService.CreateNewProduct_ServiceAsync(productDataRegister);
 
             if (newProductCreated is not null)
-                return Ok(new { Success = true, ProductCreated = newProductCreated });
+                return Ok(new { Success = true, Products = newProductCreated });
         }
         catch (Exception exception)
         {

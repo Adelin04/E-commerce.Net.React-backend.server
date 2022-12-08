@@ -39,7 +39,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<List<Product>> GetAllProductsAsync()
     {
-        var listAllProducts = await this._context.Products.ToListAsync();
+        var listAllProducts = await this._context.Products.Include(categoryProduct=>categoryProduct.CategoryProduct).ToListAsync();
 
         if (listAllProducts is not null)
             return listAllProducts;
