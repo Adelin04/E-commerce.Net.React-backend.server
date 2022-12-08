@@ -46,7 +46,7 @@ public class ProductController : ControllerBase
             if (listOfProducts is not null)
             {
                 this.Logger.LogInformation($"Returned products list");
-                return Ok(new { Success = true, ListOfProducts = listOfProducts, Count = listOfProducts.Count });
+                return Ok(new { Success = true, Products = listOfProducts, Count = listOfProducts.Count });
             }
 
             if (listOfProducts.Count < 1)
