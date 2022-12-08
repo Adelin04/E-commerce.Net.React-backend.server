@@ -10,10 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 // DB_CONTEXT
-// builder.Services.AddDbContext<EcommerceContext>(options =>
-//     options.UseMySql(builder.Configuration.GetConnectionString("DB_CONNECTION_MYSQL"),
-//         new MySqlServerVersion(new Version(8, 0, 22))));
-
 builder.Services.AddDbContext<EcommerceContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DB_CONNECTION_PSQL")));
 
@@ -48,7 +44,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors(builder =>
 {
     builder
-        .WithOrigins(new[] { "https://ecommerce-drm.herokuapp.com", " http://localhost:3000" })
+        .WithOrigins(new[] { "https://ecommerce-dotnet-react.herokuapp.com", " http://localhost:3000" })
         .AllowAnyOrigin()
         .AllowAnyMethod()
         .AllowAnyHeader();
