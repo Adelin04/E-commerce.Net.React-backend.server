@@ -1,6 +1,7 @@
 ﻿using Ecommerce.API.Contracts;
 using Ecommerce.API.Models;
 using Ecommerce.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.API.Controllers;
@@ -18,6 +19,7 @@ public class RoleController : ControllerBase
         this._roleService = roleService;
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpPost("create/newRole/")]
     public async Task<ActionResult> CreateNewRole([FromBody] RoleDataCreateNewRole dataCreateNewRole)
     {
@@ -43,6 +45,7 @@ public class RoleController : ControllerBase
             { Success = false, Message = $"The role {dataCreateNewRole.nameRole} could not be created!" });
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpGet("get/roleById/{id}")]
     public async Task<ActionResult> GetRoleById(long id)
     {
@@ -65,6 +68,7 @@ public class RoleController : ControllerBase
         return BadRequest(new { Success = false, Message = $"Role by id not found!" });
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpGet("get/allRoles")]
     public async Task<ActionResult> GetAllRoles()
     {
@@ -96,6 +100,7 @@ public class RoleController : ControllerBase
     }
 
 
+    [Authorize(Roles = "ADMIN")]
     [HttpPut("update/roleById/{id}")]
     public async Task<ActionResult> UpdateRoleById([FromRoute] long id, [FromBody] RoleDataUpdate roleDataUpdate)
     {
@@ -120,6 +125,7 @@ public class RoleController : ControllerBase
         return BadRequest(new { Success = false, Message = $"The role {roleDataUpdate.name} could not be updated!" });
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpDelete("delete/roleById/{id}")]
     public async Task<ActionResult> DeleteRoleById([FromRoute] long id)
     {

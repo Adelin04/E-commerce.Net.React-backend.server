@@ -1,5 +1,6 @@
 ﻿using Ecommerce.API.Contracts;
 using Ecommerce.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ public class UserController : ControllerBase
         this.Logger = logger;
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpGet("getAllUsers")]
     public async Task<ActionResult> GetAllUsers()
     {
@@ -47,6 +49,7 @@ public class UserController : ControllerBase
         return BadRequest(new { Success = false, Message = "No users found!" });
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpGet("get/userById/{id}")]
     public async Task<ActionResult> GetUserById([FromRoute] long id)
     {
@@ -66,6 +69,7 @@ public class UserController : ControllerBase
         return BadRequest(new { Success = false, Message = "No user found!" });
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpPost("update/userById/{id}")]
     public async Task<ActionResult> UpdateUserById([FromRoute] long id, [FromBody] UserDataUpdate userDataUpdate)
     {
@@ -89,6 +93,7 @@ public class UserController : ControllerBase
         return BadRequest(new { Success = false, Message = "No user found!" });
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpDelete("delete/userById/{id}")]
     public async Task<ActionResult> DeleteUserById([FromRoute] long id)
     {

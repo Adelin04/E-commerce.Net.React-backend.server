@@ -1,5 +1,6 @@
 ﻿using Ecommerce.API.Contracts;
 using Ecommerce.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.API.Controllers;
@@ -10,24 +11,27 @@ public class CategoryProductController : ControllerBase
 {
     private readonly CategoryProductService _categoryProductService;
     private readonly ILogger<CategoryProductController> Logger;
-    
-    public CategoryProductController(CategoryProductService categoryProductService,ILogger<CategoryProductController> logger)
+
+    public CategoryProductController(CategoryProductService categoryProductService,
+        ILogger<CategoryProductController> logger)
     {
         this._categoryProductService = categoryProductService;
         this.Logger = logger;
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpPost("create/newCategoryProduct")]
     public async Task<ActionResult> CrateNewCategoryProduct(CategoryProductDataRegister categoryProductDataRegister)
     {
         try
         {
-            var newCategoryProductCreated = await this._categoryProductService.AddNewCategoryProduct_ServiceAsync(categoryProductDataRegister);
+            var newCategoryProductCreated =
+                await this._categoryProductService.AddNewCategoryProduct_ServiceAsync(categoryProductDataRegister);
 
             if (newCategoryProductCreated is not null)
             {
                 this.Logger.LogInformation($"New category product was created -> {newCategoryProductCreated.Name}");
-                return Ok(new {Success = true,NewCategoryProductCreated = newCategoryProductCreated});
+                return Ok(new { Success = true, NewCategoryProductCreated = newCategoryProductCreated });
             }
         }
         catch (Exception exception)
@@ -38,7 +42,7 @@ public class CategoryProductController : ControllerBase
 
         return BadRequest($"The product {categoryProductDataRegister.Name} could not be created!");
     }
-    
+
     [HttpGet("get/allCategoriesProduct")]
     public async Task<ActionResult> GetAllProducts()
     {

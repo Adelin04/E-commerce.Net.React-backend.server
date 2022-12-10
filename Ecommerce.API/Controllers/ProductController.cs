@@ -1,5 +1,6 @@
 ﻿using Ecommerce.API.Contracts;
 using Ecommerce.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 
@@ -18,6 +19,7 @@ public class ProductController : ControllerBase
         this.Logger = logger;
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpPost("create/newProduct")]
     public async Task<ActionResult> CreateNewProduct([FromBody] ProductDataRegister productDataRegister)
     {
@@ -34,7 +36,8 @@ public class ProductController : ControllerBase
             return BadRequest(new { Error = exception.Message });
         }
 
-        return BadRequest(new { Success = false, Message = $"The product {productDataRegister.Name} could not be created!" });
+        return BadRequest(new
+            { Success = false, Message = $"The product {productDataRegister.Name} could not be created!" });
     }
 
     [HttpGet("get/allProducts")]
@@ -84,6 +87,7 @@ public class ProductController : ControllerBase
     }
 
 
+    [Authorize(Roles = "ADMIN")]
     [HttpPut("update/productById/{id}")]
     public async Task<ActionResult> UpdateProductById([FromRoute] long id,
         [FromBody] ProductDataUpdate productDataUpdate)
@@ -109,6 +113,7 @@ public class ProductController : ControllerBase
             { Success = false, Message = $"The product {productDataUpdate.Name} could not be updated!" });
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpDelete("delete/productById/{id}")]
     public async Task<ActionResult> DeleteProductById([FromRoute] long id)
     {
