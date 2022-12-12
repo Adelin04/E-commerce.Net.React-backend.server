@@ -11,5 +11,6 @@ public record ProductDataRegister
     double Price,
     string PicturePath,
     long Stock,
+    List<SizeDataRegister> Sizes,
     string CategoryName
 );

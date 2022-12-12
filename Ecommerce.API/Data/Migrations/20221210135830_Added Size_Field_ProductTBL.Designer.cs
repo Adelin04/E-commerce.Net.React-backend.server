@@ -3,6 +3,7 @@ using System;
 using Ecommerce.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ecommerce.API.Data.Migrations
 {
     [DbContext(typeof(EcommerceContext))]
-    partial class EcommerceContextModelSnapshot : ModelSnapshot
+    [Migration("20221210135830_Added Size_Field_ProductTBL")]
+    partial class AddedSizeFieldProductTBL
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,6 +83,10 @@ namespace Ecommerce.API.Data.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<long>("Stock")
                         .HasColumnType("bigint");
 
@@ -108,28 +115,6 @@ namespace Ecommerce.API.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Role");
-                });
-
-            modelBuilder.Entity("Ecommerce.API.Models.Size", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long?>("ProductId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Sizes");
                 });
 
             modelBuilder.Entity("Ecommerce.API.Models.User", b =>
@@ -200,13 +185,6 @@ namespace Ecommerce.API.Data.Migrations
                     b.Navigation("CategoryProduct");
                 });
 
-            modelBuilder.Entity("Ecommerce.API.Models.Size", b =>
-                {
-                    b.HasOne("Ecommerce.API.Models.Product", null)
-                        .WithMany("Sizes")
-                        .HasForeignKey("ProductId");
-                });
-
             modelBuilder.Entity("Ecommerce.API.Models.UserRole", b =>
                 {
                     b.HasOne("Ecommerce.API.Models.Role", "Role")
@@ -224,11 +202,6 @@ namespace Ecommerce.API.Data.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Ecommerce.API.Models.Product", b =>
-                {
-                    b.Navigation("Sizes");
                 });
 
             modelBuilder.Entity("Ecommerce.API.Models.Role", b =>

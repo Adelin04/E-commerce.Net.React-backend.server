@@ -7,6 +7,7 @@ public class Product
 {
     public Product()
     {
+        // Sizes = new List<Size>();
         Currency = new Currency().EURO.ToString();
         CreatedAt = new DateTime().Date;
         UpdatedAt = new DateTime().Date;
@@ -21,10 +22,15 @@ public class Product
     public string PicturePath { get; set; }
     public long Stock { get; set; }
     public string Currency { get; set; }
+
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
 
+    // Relationship CategoryProduct
     public virtual long CategoryProductId { get; set; }
     public virtual CategoryProduct CategoryProduct { get; set; }
+
+    // Relationship Size
+    public virtual ICollection<Size> Sizes { get; set; }
 }

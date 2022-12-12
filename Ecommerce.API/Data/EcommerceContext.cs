@@ -6,10 +6,11 @@ namespace Ecommerce.API.Data;
 public class EcommerceContext : DbContext
 {
     public virtual DbSet<User> Users { get; set; }
-    public virtual DbSet<Product> Products { get; set; }
-    public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
     public virtual DbSet<Role> Role { get; set; }
     public virtual DbSet<UserRole> UserRoles { get; set; }
+    public virtual DbSet<Product> Products { get; set; }
+    public virtual DbSet<Size> Sizes { get; set; }
+    public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
 
 
     public EcommerceContext(DbContextOptions options) : base(options)
@@ -22,6 +23,7 @@ public class EcommerceContext : DbContext
         modelBuilder.Entity<User>().HasKey(user => user.Id);
         modelBuilder.Entity<Product>().HasKey(product => product.Id);
         modelBuilder.Entity<CategoryProduct>().HasKey(categoryProduct => categoryProduct.Id);
+        modelBuilder.Entity<Size>().HasKey(size => size.Id);
         modelBuilder.Entity<Role>().HasKey(role => role.Id);
         modelBuilder.Entity<UserRole>().HasKey(userRole =>
             new
@@ -42,9 +44,14 @@ public class EcommerceContext : DbContext
             .HasForeignKey(sc => sc.RoleId);
 
 
-        //Relationships table Product,CategoryProduct
-        modelBuilder.Entity<Product>()
-            .HasOne<CategoryProduct>(product => product.CategoryProduct);
+        modelBuilder.Entity<Product>(entity =>
+        {
+            //Relationships table Product,CategoryProduct
+            entity
+                .HasOne<CategoryProduct>(product => product.CategoryProduct);
 
+            //Relationships table Product,Size
+            entity.HasMany(product => product.Sizes);
+        });
     }
 }

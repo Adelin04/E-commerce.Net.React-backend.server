@@ -3,6 +3,7 @@ using System;
 using Ecommerce.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ecommerce.API.Data.Migrations
 {
     [DbContext(typeof(EcommerceContext))]
-    partial class EcommerceContextModelSnapshot : ModelSnapshot
+    [Migration("20221210141921_Created_SizeTBL")]
+    partial class CreatedSizeTBL
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,12 +125,7 @@ namespace Ecommerce.API.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<long?>("ProductId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Sizes");
                 });
@@ -200,13 +198,6 @@ namespace Ecommerce.API.Data.Migrations
                     b.Navigation("CategoryProduct");
                 });
 
-            modelBuilder.Entity("Ecommerce.API.Models.Size", b =>
-                {
-                    b.HasOne("Ecommerce.API.Models.Product", null)
-                        .WithMany("Sizes")
-                        .HasForeignKey("ProductId");
-                });
-
             modelBuilder.Entity("Ecommerce.API.Models.UserRole", b =>
                 {
                     b.HasOne("Ecommerce.API.Models.Role", "Role")
@@ -224,11 +215,6 @@ namespace Ecommerce.API.Data.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Ecommerce.API.Models.Product", b =>
-                {
-                    b.Navigation("Sizes");
                 });
 
             modelBuilder.Entity("Ecommerce.API.Models.Role", b =>
