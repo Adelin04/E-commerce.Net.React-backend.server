@@ -3,6 +3,7 @@ using System;
 using Ecommerce.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ecommerce.API.Data.Migrations
 {
     [DbContext(typeof(EcommerceContext))]
-    partial class EcommerceContextModelSnapshot : ModelSnapshot
+    [Migration("20221213045353_Added_SizeStockTBL")]
+    partial class AddedSizeStockTBL
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,10 +138,10 @@ namespace Ecommerce.API.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("FK_ProductId")
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("FK_SizeId")
+                    b.Property<long>("SizeId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("Stock")
@@ -146,9 +149,9 @@ namespace Ecommerce.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FK_ProductId");
+                    b.HasIndex("ProductId");
 
-                    b.HasIndex("FK_SizeId");
+                    b.HasIndex("SizeId");
 
                     b.ToTable("SizeStocks");
                 });
@@ -224,14 +227,14 @@ namespace Ecommerce.API.Data.Migrations
             modelBuilder.Entity("Ecommerce.API.Models.SizeStock", b =>
                 {
                     b.HasOne("Ecommerce.API.Models.Product", "Product")
-                        .WithMany("SizeStocks")
-                        .HasForeignKey("FK_ProductId")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Ecommerce.API.Models.Size", "Size")
-                        .WithMany("SizesStocks")
-                        .HasForeignKey("FK_SizeId")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -259,19 +262,9 @@ namespace Ecommerce.API.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Ecommerce.API.Models.Product", b =>
-                {
-                    b.Navigation("SizeStocks");
-                });
-
             modelBuilder.Entity("Ecommerce.API.Models.Role", b =>
                 {
                     b.Navigation("UserRoles");
-                });
-
-            modelBuilder.Entity("Ecommerce.API.Models.Size", b =>
-                {
-                    b.Navigation("SizesStocks");
                 });
 
             modelBuilder.Entity("Ecommerce.API.Models.User", b =>

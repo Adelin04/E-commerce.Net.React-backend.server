@@ -17,7 +17,13 @@ public class ProductService
 
     public async Task<Product> CreateNewProduct_ServiceAsync(ProductDataRegister productDataRegister)
     {
+        
+        foreach (var VARIABLE in productDataRegister.Sizes)
+        {
+            Console.WriteLine(VARIABLE);
+        }
         Product newProduct = null;
+
 
         var findCategoryProduct =
             await this._categoryProductRepository.GetCategoryProductByNameAsync(productDataRegister.CategoryName);
@@ -33,7 +39,8 @@ public class ProductService
             newProduct.Color = productDataRegister.Color;
             newProduct.Description = productDataRegister.Description;
             newProduct.Price = productDataRegister.Price;
-            newProduct.Stock = productDataRegister.Stock;
+            // newProduct.Stock = productDataRegister.Stock;
+            // newProduct.Sizes = new List<Size>{};
             newProduct.PicturePath = productDataRegister.PicturePath;
 
             //FOREIGNKEY
@@ -41,7 +48,7 @@ public class ProductService
         }
 
         var newProductCreated = await this._productRepository.CreateNewProductAsync(newProduct);
-        
+
         return newProduct;
     }
 

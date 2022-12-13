@@ -12,6 +12,7 @@ public class EcommerceContext : DbContext
     public virtual DbSet<Size> Sizes { get; set; }
     public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
 
+    public virtual DbSet<SizeStock> SizeStocks { get; set; }
 
     public EcommerceContext(DbContextOptions options) : base(options)
     {
@@ -31,6 +32,7 @@ public class EcommerceContext : DbContext
                 userRole.UserId,
                 userRole.RoleId,
             });
+        modelBuilder.Entity<SizeStock>().HasKey(sizeStock => sizeStock.Id);
 
         // Relationships table User,Role,UserRole
         modelBuilder.Entity<UserRole>()
@@ -39,9 +41,9 @@ public class EcommerceContext : DbContext
             .HasForeignKey(userRole => userRole.UserId);
 
         modelBuilder.Entity<UserRole>()
-            .HasOne<Role>(sc => sc.Role)
-            .WithMany(s => s.UserRoles)
-            .HasForeignKey(sc => sc.RoleId);
+            .HasOne<Role>(userRole => userRole.Role)
+            .WithMany(role => role.UserRoles)
+            .HasForeignKey(userRole => userRole.RoleId);
 
 
         modelBuilder.Entity<Product>(entity =>
@@ -49,9 +51,18 @@ public class EcommerceContext : DbContext
             //Relationships table Product,CategoryProduct
             entity
                 .HasOne<CategoryProduct>(product => product.CategoryProduct);
+        });
 
-            //Relationships table Product,Size
-            entity.HasMany(product => product.Sizes);
+        //Relationships table Product,Size,SizeStock
+        modelBuilder.Entity<SizeStock>(entity =>
+        {
+            entity.HasOne(sizStock => sizStock.Size)
+                .WithMany(size => size.SizesStocks)
+                .HasForeignKey(sizeStock => sizeStock.FK_SizeId);
+
+            entity.HasOne(sizeStock => sizeStock.Product)
+                .WithMany(product => product.SizeStocks)
+                .HasForeignKey(sizeStock => sizeStock.FK_ProductId);
         });
     }
 }

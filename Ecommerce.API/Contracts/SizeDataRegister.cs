@@ -1,9 +1,7 @@
 ﻿namespace Ecommerce.API.Contracts;
 
-public record Stock(int count);
-
 public record SizeDataRegister(
-    int Stock,
+    int XXS,
     int XS,
     int S,
     int M,

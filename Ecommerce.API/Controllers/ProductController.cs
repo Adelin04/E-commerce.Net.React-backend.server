@@ -19,7 +19,7 @@ public class ProductController : ControllerBase
         this.Logger = logger;
     }
 
-    [Authorize(Roles = "ADMIN")]
+    // [Authorize(Roles = "ADMIN")]
     [HttpPost("create/newProduct")]
     public async Task<ActionResult> CreateNewProduct([FromBody] ProductDataRegister productDataRegister)
     {

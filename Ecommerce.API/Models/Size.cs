@@ -2,9 +2,15 @@
 
 public class Size
 {
+    public Size()
+    {
+        this.SizesStocks = new List<SizeStock>();
+    }
+
+
     public long Id { get; set; }
     public string Name { get; set; }
 
-    /*public long FK_SizeId { get; set; }
-    public virtual Product Product { get; set; }*/
+    // Relationship SizeStock
+    public virtual ICollection<SizeStock> SizesStocks { get; set; }
 }
