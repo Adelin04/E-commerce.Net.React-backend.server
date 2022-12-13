@@ -14,25 +14,36 @@ public class SizeRepository : ISizeRepository
         this._context = context;
     }
 
-    public Task<Size> CreateNewSize()
+    public async Task<Size> CreateNewSizeAsync(Size newSize)
     {
-        throw new NotImplementedException();
+        var createdNewSize = await this._context.Sizes.AddAsync(newSize);
+
+        if (createdNewSize.State == EntityState.Added)
+        {
+            this._context.SaveChangesAsync();
+            return newSize;
+        }
+            return null;
     }
 
-    public async Task<List<Size>> GetAllSize()
+    public async Task<List<Size>> GetAllSizeAsync()
     {
         var allSizes = await this._context.Sizes.ToListAsync();
 
         return allSizes;
     }
 
-    public Task<Size> GetAllSizeById(long id)
+    public Task<Size> GetAllSizeByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        var sizeById = this._context.Sizes.FirstOrDefaultAsync(size => size.Id == id);
+
+        return sizeById;
     }
 
-    public Task<Size> GetAllSizeByName(string name)
+    public Task<Size> GetAllSizeByNameAsync(string name)
     {
-        throw new NotImplementedException();
+        var sizeByName = this._context.Sizes.FirstOrDefaultAsync(size => size.Name == name);
+
+        return sizeByName;
     }
 }

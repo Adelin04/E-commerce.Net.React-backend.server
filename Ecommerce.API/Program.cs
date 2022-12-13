@@ -71,12 +71,14 @@ builder.Services.AddTransient<IRoleRepository, RoleRepository>();
 builder.Services.AddTransient<IUserRoleRepository, UserRoleRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<ICategoryProductRepository, CategoryProductRepository>();
+builder.Services.AddTransient<ISizeRepository, SizeRepository>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<RoleService>();
 builder.Services.AddScoped<UserRoleService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<CategoryProductService>();
+builder.Services.AddScoped<SizeService>();
 
 
 var app = builder.Build();
