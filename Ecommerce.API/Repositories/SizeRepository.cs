@@ -20,10 +20,10 @@ public class SizeRepository : ISizeRepository
 
         if (createdNewSize.State == EntityState.Added)
         {
-            this._context.SaveChangesAsync();
+            await this._context.SaveChangesAsync(true);
             return newSize;
         }
-            return null;
+        return null;
     }
 
     public async Task<List<Size>> GetAllSizeAsync()
