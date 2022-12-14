@@ -30,7 +30,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<Product> GetProductByIdAsync(long id)
     {
-        var foundProductById = await this._context.Products.FirstOrDefaultAsync(product => product.Id == id);
+        var foundProductById = await this._context.Products.Include(product=>product.CategoryProduct).Include(product=>product.SizeStocks).ThenInclude(ss=>ss.Size).FirstOrDefaultAsync(product => product.Id == id);
 
         if (foundProductById is not null)
             return foundProductById;
