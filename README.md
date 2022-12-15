@@ -41,8 +41,7 @@ CategoryProduct endpoints:
   - /api/CategoryProduct/v1/add/newCategoryProduct
   - /api/CategoryProduct/v1/get/allCategory
   
-  
-![Swagger](https://user-images.githubusercontent.com/63923347/206838672-d5b2910e-c406-474c-973d-1c16d8d3c324.jpg)
+  ![swagger](https://user-images.githubusercontent.com/63923347/207935445-cfc01943-f246-4f23-a49f-f128e3959841.png)
 ![login](https://user-images.githubusercontent.com/63923347/191663942-1e342d69-79a6-482e-83ed-d274a129c589.png)
 ![home](https://user-images.githubusercontent.com/63923347/191663927-ec59e2d4-d40e-45cb-9dbe-af0b95f880ed.png)
 ![clothes](https://user-images.githubusercontent.com/63923347/191663954-8f01c30a-e4b1-467c-8118-1743fade9728.png)
