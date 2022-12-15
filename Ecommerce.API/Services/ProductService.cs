@@ -47,21 +47,21 @@ public class ProductService
             newProduct.PicturePath = productDataRegister.PicturePath;
             newProduct.Stock = 1;
 
-            //FOREIGNKEY
+            //FOREIGNKEY category product
             newProduct.CategoryProductId = findCategoryProduct.Id;
 
 
         }
         var newProductCreated = await this._productRepository.CreateNewProductAsync(newProduct);
-        
-        
-            //register new size and stock product
-        if(newProductCreated is not null)
+
+
+        //register new size and stock product
+        if (newProductCreated is not null)
             foreach (var size in productDataRegister.Sizes)
             {
-                var verifySizeExist = findSizesProduct.Find(item=>item.Name == size.Size);
-                
-                listOfSize.Add(new SizeStock { Stock = size.Stock, FK_ProductId = newProductCreated.Id, FK_SizeId =  verifySizeExist.Id});
+                var verifySizeExist = findSizesProduct.Find(item => item.Name == size.Size);
+
+                listOfSize.Add(new SizeStock { Stock = size.Stock, FK_ProductId = newProductCreated.Id, FK_SizeId = verifySizeExist.Id });
             }
         var newListOfSizeStockRegistered = await this._sizeStockRepository.RegisterListOfNewSizeStockAsync(listOfSize);
 
