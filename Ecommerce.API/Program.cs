@@ -72,6 +72,7 @@ builder.Services.AddTransient<IUserRoleRepository, UserRoleRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<ICategoryProductRepository, CategoryProductRepository>();
 builder.Services.AddTransient<ISizeRepository, SizeRepository>();
+builder.Services.AddTransient<ISizeStockRepository, SizeStockRepository>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<RoleService>();

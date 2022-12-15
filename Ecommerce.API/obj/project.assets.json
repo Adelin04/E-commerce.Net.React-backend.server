@@ -11249,24 +11249,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Teilor\\.nuget\\packages\\": {}
+    "C:\\Users\\adeli\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Adelin\\E-commerce.Net.React-backend.server\\Ecommerce.API\\Ecommerce.API.csproj",
+      "projectUniqueName": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React-backend.server\\Ecommerce.API\\Ecommerce.API.csproj",
       "projectName": "Ecommerce.API",
-      "projectPath": "D:\\Adelin\\E-commerce.Net.React-backend.server\\Ecommerce.API\\Ecommerce.API.csproj",
-      "packagesPath": "C:\\Users\\Teilor\\.nuget\\packages\\",
-      "outputPath": "D:\\Adelin\\E-commerce.Net.React-backend.server\\Ecommerce.API\\obj\\",
+      "projectPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React-backend.server\\Ecommerce.API\\Ecommerce.API.csproj",
+      "packagesPath": "C:\\Users\\adeli\\.nuget\\packages\\",
+      "outputPath": "F:\\__GitProjects\\__NEW__\\E-commerce.Net.React-backend.server\\Ecommerce.API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Teilor\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\adeli\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

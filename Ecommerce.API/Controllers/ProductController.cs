@@ -113,7 +113,7 @@ public class ProductController : ControllerBase
             { Success = false, Message = $"The product {productDataUpdate.Name} could not be updated!" });
     }
 
-    [Authorize(Roles = "ADMIN")]
+    // [Authorize(Roles = "ADMIN")]
     [HttpDelete("delete/productById/{id}")]
     public async Task<ActionResult> DeleteProductById([FromRoute] long id)
     {
