@@ -50,16 +50,20 @@ public class ProductService
             //FOREIGNKEY
             newProduct.CategoryProductId = findCategoryProduct.Id;
 
-            //register new size and stock product
-            foreach (var size in productDataRegister.Sizes)
-            {
-                System.Console.WriteLine("size " + size.Size);
-                // listOfSize.Add(new SizeStock { Stock = size.Stock, FK_ProductId = newProduct.Id, FK_SizeId = findSizesProduct.Where(sizeFound=>sizeFound.Name == size.Size) });
-            }
 
         }
-        var newListOfSizeStockRegistered = await this._sizeStockRepository.RegisterListOfNewSizeStockAsync(listOfSize);
         var newProductCreated = await this._productRepository.CreateNewProductAsync(newProduct);
+        
+        
+            //register new size and stock product
+        if(newProductCreated is not null)
+            foreach (var size in productDataRegister.Sizes)
+            {
+                var verifySizeExist = findSizesProduct.Find(item=>item.Name == size.Size);
+                
+                listOfSize.Add(new SizeStock { Stock = size.Stock, FK_ProductId = newProductCreated.Id, FK_SizeId =  verifySizeExist.Id});
+            }
+        var newListOfSizeStockRegistered = await this._sizeStockRepository.RegisterListOfNewSizeStockAsync(listOfSize);
 
         return newProduct;
     }
