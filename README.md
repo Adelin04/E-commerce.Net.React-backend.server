@@ -49,4 +49,4 @@ CategoryProduct endpoints:
 ![logout](https://user-images.githubusercontent.com/63923347/191663974-03a31e19-c9a1-4e82-9e73-270941605804.png)
 ![cart](https://user-images.githubusercontent.com/63923347/191663967-dac9853c-6140-4f03-8134-0c707f1045f1.png)
 ![dashboard admin](https://user-images.githubusercontent.com/63923347/191664141-840d2ca2-ca81-4b63-a81e-874486ce14ab.png)
-![Create New Product](https://user-images.githubusercontent.com/63923347/207960979-14f91827-0fef-4d16-89ab-d2ea459256bb.png)
+![Create New Product](https://user-images.githubusercontent.com/63923347/208293959-54acb399-46a9-44c8-95fa-9eaab394fc05.png)
