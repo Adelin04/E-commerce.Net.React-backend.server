@@ -8,7 +8,7 @@ Tech stack used:
      - RESTful API
 - ReacJS for the frontend 
 - Redux-Toolkit
-- PostgreSql for the database 
+- MySql for the database 
 - AWS S3 to serve images
 
 # Endpoints backend
