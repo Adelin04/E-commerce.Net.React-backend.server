@@ -80,6 +80,7 @@ builder.Services.AddScoped<UserRoleService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<CategoryProductService>();
 builder.Services.AddScoped<SizeService>();
+builder.Services.AddScoped<AwsS3StorageImagesService>();
 
 
 var app = builder.Build();
